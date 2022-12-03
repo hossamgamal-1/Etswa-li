@@ -1,6 +1,7 @@
-import 'package:e_commerce/core/themes/app_light_theme.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../core/themes/app_light_theme.dart';
 
 class AppTextStyles {
   TextStyle get productTitle =>

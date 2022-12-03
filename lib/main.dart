@@ -1,28 +1,33 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:provider/provider.dart';
-import 'package:device_preview/device_preview.dart';
 
+import 'core/injection.dart';
 import 'core/themes/app_light_theme.dart';
 import 'ui/controllers/home_page_controller.dart';
+import 'ui/controllers/search_controller.dart';
 import 'ui/screens/home_page.dart';
-import 'data/database/remote_database.dart';
 
+//TODO: images in seeAll page need to take border Radius
+//TODO: professional handling of colors & Texts & TextStyles
+//TODO: PRoduct Page is mod7eka
+//TODO: Search feature
+//TODO: Auth feature
+//TODO: Cart feature with mapping
+//TODO: carosel images in each productCard
+//TODO: Shareadprefs save favorite Ids
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await RemoteDatabase.getProductsData();
-  await RemoteDatabase.getCategoriesData();
+  initGetIt();
   await FlutterStatusbarcolor.setNavigationBarColor(const Color(0xcfffffff));
   await FlutterStatusbarcolor.setStatusBarColor(const Color(0xcfffffff));
 
-  runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const MyApp(),
-    ),
-  );
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,17 +39,15 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => HomePageController()),
+        ChangeNotifierProvider(create: (context) => SearchController())
       ],
       builder: (context, child) => ScreenUtilInit(
         designSize: const Size(100, 100),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => MaterialApp(
-          useInheritedMediaQuery: true,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
-          title: 'E-Commerce',
+          title: 'etswa\'li',
           theme: appLightTheme.themeData,
           home: const HomePage(),
         ),

@@ -1,15 +1,13 @@
-import 'dart:math';
-
 class Product {
   final int id;
   final double price;
   final double fakePrice;
   final String title;
   final String description;
-  final String category;
-  final String imageUrl;
-  final num rate;
-  final int count;
+  final String categoryName;
+  final String categoryImg;
+  final List<String> imageUrls;
+  bool isFavourite;
 
   Product({
     required this.id,
@@ -17,23 +15,25 @@ class Product {
     required this.fakePrice,
     required this.title,
     required this.description,
-    required this.category,
-    required this.imageUrl,
-    required this.rate,
-    required this.count,
+    required this.categoryName,
+    required this.categoryImg,
+    required this.imageUrls,
+    required this.isFavourite,
   });
   factory Product.fromJson(Map<String, dynamic> fetchedData) {
     num price = fetchedData['price'];
+    List images = fetchedData['images'];
+
     return Product(
       id: fetchedData['id'],
       price: price.ceilToDouble() - 0.01,
-      fakePrice: fetchedData['price'] * (Random().nextDouble() + 1),
+      fakePrice: price * (price % 5 + 105) / 100,
       title: fetchedData['title'],
       description: fetchedData['description'],
-      category: fetchedData['category'],
-      imageUrl: fetchedData['image'],
-      rate: fetchedData['rating']['rate'],
-      count: fetchedData['rating']['count'],
+      categoryName: fetchedData['category']['name'],
+      imageUrls: images.map((e) => e.toString()).toList(),
+      categoryImg: fetchedData['category']['image'],
+      isFavourite: false,
     );
   }
 }

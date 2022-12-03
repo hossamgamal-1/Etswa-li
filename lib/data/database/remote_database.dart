@@ -1,33 +1,12 @@
-import 'dart:convert';
-
-import 'package:e_commerce/core/app_constants.dart';
-import 'package:e_commerce/data/entities/products.dart';
-import 'package:http/http.dart' as http;
+import 'products_data_services.dart';
+import 'category_data_services.dart';
 
 class RemoteDatabase {
-  static String productsUrl =
-      '${AppConstants.baseUrl}${AppConstants.productsEndpoint}';
-  static List<Product> products = [];
+  final ProductsDataService productsDataService;
+  final CategoryDataService categoryDataService;
 
-  static Future<void> getProductsData() async {
-    http.Response response = await http.get(Uri.parse(productsUrl));
-    List dataList = json.decode(response.body);
-    for (var i = 0; i < dataList.length; i++) {
-      Product product = Product.fromJson(dataList[i]);
-      products.add(product);
-    }
-  }
+  RemoteDatabase(this.productsDataService, this.categoryDataService);
 
-  static String categoriesUrl =
-      '${AppConstants.baseUrl}${AppConstants.categoriesEndpoint}';
-  static List<String> categories = [];
-
-  static Future<void> getCategoriesData() async {
-    http.Response response = await http.get(Uri.parse(categoriesUrl));
-    List dataList = json.decode(response.body);
-    for (var category in dataList) {
-      categories.add(category);
-    }
-    // print(categories);
-  }
+  Future<void> getProductsData() => productsDataService.getProductsData();
+  Future<void> getCategoriesData() => categoryDataService.getCategoriesData();
 }

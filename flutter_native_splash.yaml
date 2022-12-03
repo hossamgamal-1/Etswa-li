@@ -1,0 +1,11 @@
+flutter_native_splash:
+  # flutter pub run flutter_native_splash:create
+  color: "#effffa"
+  color_dark: "#effffa"
+  image: assets/images/icon.png
+  android_12:
+    image: assets/images/icon.png
+    color: "#effffa"
+    color_dark: "#effffa"
+
+   
