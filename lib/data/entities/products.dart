@@ -1,3 +1,5 @@
+import 'package:e_commerce/modules/favourites/controllers/favourites_controller.dart';
+
 class Product {
   final int id;
   final double price;
@@ -33,7 +35,8 @@ class Product {
       categoryName: fetchedData['category']['name'],
       imageUrls: images.map((e) => e.toString()).toList(),
       categoryImg: fetchedData['category']['image'],
-      isFavourite: false,
+      isFavourite:
+          FavouritesController.favouriteItemsIds.contains(fetchedData['id']),
     );
   }
 }

@@ -1,8 +1,8 @@
+import 'package:e_commerce/modules/favourites/controllers/favourites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/entities/products.dart';
-import '../../controllers/home_page_controller.dart';
 
 class FavouriteButton extends StatelessWidget {
   const FavouriteButton(this.product, {super.key});
@@ -20,14 +20,12 @@ class FavouriteButton extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
         ),
-        child: Consumer<HomePageController>(
+        child: Consumer<FavouritesController>(
           builder: (context, value, child) {
             return Center(
               child: IconButton(
                 splashColor: Colors.transparent,
-                onPressed: product.isFavourite
-                    ? () => value.removeFavouriteItemId(product)
-                    : () => value.addFavouriteItemId(product),
+                onPressed: () => value.updateFavouriteItemId(product),
                 icon: product.isFavourite
                     ? const Icon(Icons.favorite, color: Colors.red)
                     : const Icon(Icons.favorite_border, color: Colors.grey),

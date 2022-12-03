@@ -46,13 +46,16 @@ class ProductTile extends StatelessWidget {
               Text(products, style: AppTextStyles().mainTitle),
               Expanded(child: Container()),
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(PageTransition(
+                onPressed: () => Navigator.of(context).push(
+                  PageTransition(
                     duration: const Duration(milliseconds: 300),
-                    child: SeeAllPage(title: products, data: productsData),
                     type: PageTransitionType.bottomToTop,
-                  ));
-                },
+                    child: SeeAllPage(
+                      title: products,
+                      productsData: productsData,
+                    ),
+                  ),
+                ),
                 child: Text(
                   seeAll,
                   style: AppTextStyles()

@@ -30,7 +30,7 @@ class NavBar extends StatelessWidget {
         tabs: const [
           GButton(icon: Icons.home, text: 'Home'),
           GButton(icon: Icons.favorite, text: 'Likes'),
-          GButton(icon: Icons.search, text: 'Search'),
+          GButton(icon: Icons.shopping_cart, text: 'Cart'),
           GButton(icon: Icons.person, text: 'Profile')
         ],
       ),

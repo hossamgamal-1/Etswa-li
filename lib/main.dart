@@ -6,27 +6,30 @@ import 'package:provider/provider.dart';
 
 import 'core/injection.dart';
 import 'core/themes/app_light_theme.dart';
+import 'modules/favourites/controllers/favourites_controller.dart';
 import 'ui/controllers/home_page_controller.dart';
-import 'ui/controllers/search_controller.dart';
+import 'modules/search/controllers/search_controller.dart';
 import 'ui/screens/home_page.dart';
 
-//TODO: images in seeAll page need to take border Radius
-//TODO: professional handling of colors & Texts & TextStyles
-//TODO: PRoduct Page is mod7eka
-//TODO: Search feature
-//TODO: Auth feature
 //TODO: Cart feature with mapping
-//TODO: carosel images in each productCard
-//TODO: Shareadprefs save favorite Ids
+//TODO: PRoduct Page is mod7eka
+
+//carosel images in each productCard
+
+//TODO: Auth feature
+
+//TODO: professional handling of colors & Texts & TextStyles
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initGetIt();
-  await FlutterStatusbarcolor.setNavigationBarColor(const Color(0xcfffffff));
-  await FlutterStatusbarcolor.setStatusBarColor(const Color(0xcfffffff));
-
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
+  await FlutterStatusbarcolor.setNavigationBarColor(const Color(0xffffffff));
+  await FlutterStatusbarcolor.setStatusBarColor(const Color(0xffffffff));
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  await FavouritesController.getFavIdListFromDisk();
   runApp(const MyApp());
 }
 
@@ -39,6 +42,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => HomePageController()),
+        ChangeNotifierProvider(create: (context) => FavouritesController()),
         ChangeNotifierProvider(create: (context) => SearchController())
       ],
       builder: (context, child) => ScreenUtilInit(
