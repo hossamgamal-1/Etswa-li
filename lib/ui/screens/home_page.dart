@@ -1,15 +1,19 @@
+import 'package:e_commerce/ui/components/core/stateful_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+import 'package:provider/provider.dart';
 
-import '../../modules/favourites/ui/favourites.dart';
-import '../widgets/home page/app_bar.dart';
-import '../widgets/home page/nav_bar.dart';
-import '../widgets/core/product_tile.dart';
-import '../widgets/home page/categories_chip.dart';
-import '../widgets/home page/categories_tiles.dart';
-import '../../ui/controllers/home_page_controller.dart';
+import '../../core/themes/app_light_theme.dart';
 import '../../data/database/products_data_services.dart';
+import '../../modules/favourites/ui/favourites.dart';
+import '../../ui/controllers/home_page_controller.dart';
+import '../components/home page/home_page_strings.dart';
+import '../components/core/product_tile.dart';
+import '../components/home page/app_bar.dart';
+import '../components/home page/categories_chip.dart';
+import '../components/home page/categories_tiles.dart';
+import '../components/home page/nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,8 +33,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget cart() => const Center(child: Text('cart'));
-  Widget profile() => const Center(child: Text('profile'));
+  Widget cart() => const Center(child: Text(HomePageStrings.navBarCart));
+  Widget profile() => const Center(child: Text(HomePageStrings.navBarProfile));
 }
 
 class HomeContent extends StatelessWidget {
@@ -38,16 +42,27 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        SizedBox(height: 8.h, child: const CategoryChip()),
-        ProductTile(
-          products: 'Products',
-          seeAll: 'see all',
-          productsData: ProductsDataGetter.products,
-        ),
-        const CategoriesTiles()
-      ],
+    return StatefulWrapper(
+      initFunction: () async {
+        await FlutterStatusbarcolor.setNavigationBarColor(
+            AppLightTheme.canvasColor);
+        await FlutterStatusbarcolor.setStatusBarColor(
+            AppLightTheme.canvasColor);
+      },
+      child: ListView(
+        children: [
+          SizedBox(height: 8.h, child: const CategoryChip()),
+          SizedBox(
+            height: 46.h,
+            child: ProductTile(
+              products: HomePageStrings.productTileProducts,
+              seeAll: HomePageStrings.productTileSeeAll,
+              productsData: ProductsDataGetter.products,
+            ),
+          ),
+          const CategoriesTiles()
+        ],
+      ),
     );
   }
 }

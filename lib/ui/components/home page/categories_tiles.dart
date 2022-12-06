@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/product_tile.dart';
 import '../../../core/injection.dart';
-import '../../../ui/widgets/core/snapshot_error_waiting.dart';
+import '../../../ui/components/core/snapshot_error_waiting.dart';
+import '../../../ui/components/home%20page/home_page_strings.dart';
 import '../../../data/database/category_data_services.dart';
 import '../../../data/entities/categories.dart';
 import '../../../data/database/products_data_services.dart';
@@ -15,6 +16,7 @@ class CategoriesTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RemoteDatabase remoteDatabase = RemoteDatabase(getIt(), getIt());
+
     return FutureBuilder(
       future: remoteDatabase.getProductsData(),
       builder: (context, snapShots) {
@@ -30,10 +32,10 @@ class CategoriesTiles extends StatelessWidget {
                         .isEmpty
                     ? Container()
                     : SizedBox(
-                        height: 51.h,
+                        height: 46.h,
                         child: ProductTile(
                           products: category.categoryName,
-                          seeAll: 'See All',
+                          seeAll: HomePageStrings.productTileSeeAll,
                           productsData: ProductsDataGetter.products
                               .where((product) =>
                                   product.categoryName == category.categoryName)

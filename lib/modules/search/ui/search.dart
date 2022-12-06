@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../ui/widgets/core/grid_staggerd_animation.dart';
-import '../../../ui/widgets/core/product_card.dart';
+import '../../../core/themes/app_light_theme.dart';
+import '../../../ui/components/core/grid_staggerd_animation.dart';
+import '../../../ui/components/core/product_card.dart';
 import '../controllers/search_controller.dart';
+import 'search_strings.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});
@@ -18,13 +20,13 @@ class Search extends StatelessWidget {
           height: kToolbarHeight - 10,
           child: TextField(
             textAlignVertical: TextAlignVertical.bottom,
-            cursorColor: Colors.blueAccent,
+            cursorColor: AppLightTheme.cursorColor,
             decoration: InputDecoration(
-              hintText: 'What are you looking for?',
+              hintText: SearchStrings.appBarSearchHintText,
               border: outLinedBorder(),
               focusedBorder: outLinedBorder(),
               prefixIcon: const Icon(Icons.search),
-              prefixIconColor: Colors.grey,
+              prefixIconColor: AppLightTheme.unSelectedIconColor,
             ),
             onChanged: context.watch<SearchController>().search,
             autofocus: true,
@@ -33,13 +35,14 @@ class Search extends StatelessWidget {
       ),
       body: Consumer<SearchController>(
         builder: (context, value, _) => value.searchValue.isEmpty
-            ? const Center(child: Text('Let us know what you\'re looking for'))
+            ? const Center(child: Text(SearchStrings.searchWaitingValueText))
             : value.searchValue.length < 3
                 ? const Center(
-                    child: CircularProgressIndicator(color: Colors.grey))
+                    child: CircularProgressIndicator(
+                        color: AppLightTheme.unSelectedIconColor))
                 : value.searchValue.length > 2 && value.searchedProducts.isEmpty
                     ? const Center(
-                        child: Text('Couldn\'t find what you\'re looking for.'))
+                        child: Text(SearchStrings.searchWrongValueText))
                     : AnimationLimiter(
                         child: GridView.builder(
                           gridDelegate:
@@ -63,7 +66,8 @@ class Search extends StatelessWidget {
   }
 
   OutlineInputBorder outLinedBorder() => OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.grey, width: 1),
+        borderSide: const BorderSide(
+            color: AppLightTheme.unSelectedIconColor, width: 1),
         borderRadius: BorderRadius.circular(12),
       );
 }

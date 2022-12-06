@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/core/themes/app_light_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-import 'price_tile.dart';
-import 'offer_percentage_circle.dart';
-import 'favourite_button.dart';
-import '../../../core/app_text_styles.dart';
-import '../../../ui/screens/product_page.dart';
+import '../../../core/themes/app_text_styles.dart';
 import '../../../data/entities/products.dart';
+import '../../screens/product_page.dart';
+import 'favourite_button.dart';
+import 'offer_percentage_circle.dart';
+import 'price_tile.dart';
 
-//hero
 class ProductCard extends StatelessWidget {
   const ProductCard({required this.products, required this.index, super.key});
   final List<Product> products;
@@ -33,7 +33,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 child: ImagePixels(
-                  defaultColor: Colors.white,
+                  defaultColor: AppLightTheme.canvasColor,
                   imageProvider:
                       CachedNetworkImageProvider(products[index].imageUrls[0]),
                   builder: (context, image) {
@@ -67,11 +67,11 @@ class ProductCard extends StatelessWidget {
                           Center(
                             child: Text(
                               products[index].title,
-                              style: AppTextStyles().productTitle.copyWith(
-                                    color: useWhiteForeground(backgroundColor)
-                                        ? Colors.white
-                                        : Colors.black,
-                                  ),
+                              style: AppTextStyles.productTitle.copyWith(
+                                color: useWhiteForeground(backgroundColor)
+                                    ? AppLightTheme.canvasColor
+                                    : AppLightTheme.foregroundColor,
+                              ),
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.clip,
                             ),

@@ -1,4 +1,4 @@
-import 'package:e_commerce/modules/favourites/controllers/favourites_controller.dart';
+import '../../modules/favourites/controllers/favourites_controller.dart';
 
 class Product {
   final int id;
@@ -22,9 +22,13 @@ class Product {
     required this.imageUrls,
     required this.isFavourite,
   });
-  factory Product.fromJson(Map<String, dynamic> fetchedData) {
+  factory Product.fromJson(Map fetchedData) {
     num price = fetchedData['price'];
-    List images = fetchedData['images'];
+
+    List<String> images = [];
+    for (String imageurl in fetchedData['images']) {
+      images.add(imageurl);
+    }
 
     return Product(
       id: fetchedData['id'],
@@ -33,7 +37,9 @@ class Product {
       title: fetchedData['title'],
       description: fetchedData['description'],
       categoryName: fetchedData['category']['name'],
-      imageUrls: images.map((e) => e.toString()).toList(),
+      imageUrls: images[0].contains('http')
+          ? images.map((e) => e.toString()).toList()
+          : ['https://api.lorem.space/image/face?w=640&h=480'],
       categoryImg: fetchedData['category']['image'],
       isFavourite:
           FavouritesController.favouriteItemsIds.contains(fetchedData['id']),

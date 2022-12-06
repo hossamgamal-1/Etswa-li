@@ -1,9 +1,15 @@
+import 'package:e_commerce/core/themes/app_text_styles.dart';
+import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../data/entities/products.dart';
+import '../components/product page/cart_quantity.dart';
+import '../components/product page/product_page_strings.dart';
+import '../components/product page/rating_price_bar.dart';
 
-//hero
+//TODO: PRoduct Page is mod7eka
+
 class ProductPage extends StatelessWidget {
   const ProductPage(this.product, {super.key});
   final Product product;
@@ -11,7 +17,10 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: appBar(),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: appBar(),
+        ),
         body: Column(
           children: [
             Container(
@@ -21,7 +30,7 @@ class ProductPage extends StatelessWidget {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.blueAccent,
+                  color: AppLightTheme.cursorColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(80),
                     topRight: Radius.circular(80),
@@ -35,29 +44,20 @@ class ProductPage extends StatelessWidget {
                 ),
                 child: ListView(
                   children: [
-                    const Text(
-                      'About',
-                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    Text(
+                      ProductPageStrings.about,
+                      style: AppTextStyles.productPageTitleTextStyle,
                     ),
                     const SizedBox(height: 10),
                     Text(
                       product.description,
-                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                      style: AppTextStyles.productPageDiscribtionTextStyle,
                     ),
                     const SizedBox(height: 10),
-                    ratingBar(),
+                    RatingPriceBar(product),
                     const SizedBox(height: 10),
-                    //Quantity
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Quantity',
-                            style:
-                                TextStyle(fontSize: 24, color: Colors.white)),
-                        cartQuantity(),
-                      ],
-                    ),
-                    addToCart()
+                    const CartQuantity(),
+                    addToCartButton()
                   ],
                 ),
               ),
@@ -68,79 +68,27 @@ class ProductPage extends StatelessWidget {
     );
   }
 
-  Row ratingBar() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: const [
-            //TODO: rating package implementation
-            Text(
-              'RAAAAAAAAATE',
-              style: TextStyle(fontSize: 14, color: Colors.white),
-            ),
-            SizedBox(width: 5),
-          ],
-        ),
-        Text(
-          '${product.price}\$',
-          style: const TextStyle(fontSize: 24, color: Colors.white),
-        ),
-      ],
+  Widget addToCartButton() {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppLightTheme.canvasColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: TextButton(
+          onPressed: () {},
+          child: Text(
+            ProductPageStrings.addToCart,
+            style: AppTextStyles.productPageButtonTextStyle,
+          )),
     );
   }
 
-  Row addToCart() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Icon(Icons.star_border, color: Colors.white, size: 24),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Add to Cart',
-                style: TextStyle(fontSize: 20, color: Colors.blueAccent),
-              )),
-        )
-      ],
-    );
-  }
-
-  Row cartQuantity() {
-    return Row(
-      children: const [
-        //TODO: add remove quantity logic
-        Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 24,
-        ),
-        SizedBox(width: 2),
-        Text('0', style: TextStyle(fontSize: 24, color: Colors.white)),
-        SizedBox(width: 2),
-        Icon(
-          Icons.remove,
-          color: Colors.white,
-          size: 24,
-        ),
-      ],
-    );
-  }
-
-  AppBar appBar() {
+  Widget appBar() {
     return AppBar(
       title: Text(
         product.title,
-        style: const TextStyle(
-          fontSize: 26,
-          fontWeight: FontWeight.w400,
-        ),
+        style: AppTextStyles.productPageAppBarTextStyle,
       ),
       centerTitle: true,
     );

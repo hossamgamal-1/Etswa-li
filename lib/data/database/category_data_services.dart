@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_constants.dart';
@@ -19,10 +20,15 @@ class CategoryDataGetter implements CategoryDataService {
     if (categories.isEmpty) {
       http.Response response = await http.get(Uri.parse(categoriesUrl));
       List dataList = json.decode(response.body);
-      for (var data in dataList) {
-        categories.length < dataList.length
-            ? categories.add(Category.fromJson(data))
-            : null;
+
+      try {
+        for (var data in dataList) {
+          categories.length < dataList.length
+              ? categories.add(Category.fromJson(data))
+              : null;
+        }
+      } catch (error) {
+        debugPrint(error.toString());
       }
     }
   }

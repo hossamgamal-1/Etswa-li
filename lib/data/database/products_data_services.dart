@@ -10,19 +10,21 @@ abstract class ProductsDataService {
 
 class ProductsDataGetter implements ProductsDataService {
   static List<Product> products = [];
-  int times = 0;
+
   @override
   Future<void> getProductsData() async {
     String productsUrl =
-        '${AppConstants.baseUrl}${AppConstants.productsEndpoint}'; //?limit=20&offset=${20 * times}
+        '${AppConstants.baseUrl}${AppConstants.productsEndpoint}'; //?limit=50&offset=${50 * times}';
     if (products.isEmpty) {
       http.Response response = await http.get(Uri.parse(productsUrl));
       List dataList = json.decode(response.body);
-      for (var i = 0; i < dataList.length; i++) {
-        Product product = Product.fromJson(dataList[i]);
-        products.add(product);
+      for (int i = 0; i < dataList.length; i++) {
+        try {
+          products.add(Product.fromJson(dataList[i]));
+        } catch (error) {
+          print(error);
+        }
       }
-      times++;
     }
   }
 }

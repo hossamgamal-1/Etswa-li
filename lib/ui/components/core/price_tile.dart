@@ -1,7 +1,8 @@
+import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/app_text_styles.dart';
+import '../../../core/themes/app_text_styles.dart';
 import '../../../data/entities/products.dart';
 
 class PriceTile extends StatelessWidget {
@@ -12,7 +13,7 @@ class PriceTile extends StatelessWidget {
     return Container(
       width: 45.w,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppLightTheme.canvasColor,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: EdgeInsets.symmetric(vertical: 0.5.w),
@@ -23,18 +24,18 @@ class PriceTile extends StatelessWidget {
         children: [
           Text(
             '${product.price}\$',
-            style: AppTextStyles().productTitle.copyWith(
-                  fontSize: 24,
-                  color: Colors.red,
-                ),
+            style: AppTextStyles.productTitle.copyWith(
+              fontSize: 24,
+              color: AppLightTheme.offerPriceColor,
+            ),
           ),
           Text(
             '${product.fakePrice.ceilToDouble() - 0.01}\$',
-            style: AppTextStyles().productTitle.copyWith(
-                  fontSize: 14,
-                  color: Colors.grey,
-                  decoration: TextDecoration.lineThrough,
-                ),
+            style: AppTextStyles.productTitle.copyWith(
+              fontSize: 14,
+              color: AppLightTheme.unSelectedIconColor,
+              decoration: TextDecoration.lineThrough,
+            ),
           ),
         ],
       ),

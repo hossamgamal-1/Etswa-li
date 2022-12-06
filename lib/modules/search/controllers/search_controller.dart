@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../data/entities/products.dart';
+
 import '../../../data/database/products_data_services.dart';
+import '../../../data/entities/products.dart';
 
 class SearchController with ChangeNotifier {
   List<Product> searchedProducts = [];

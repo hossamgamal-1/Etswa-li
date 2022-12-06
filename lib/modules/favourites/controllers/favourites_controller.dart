@@ -12,7 +12,7 @@ class FavouritesController with ChangeNotifier {
         : const Icon(Icons.favorite);
   }
 
-  void updateFavouriteItemId(Product product) {
+  void updateFavouriteItemIdsList(Product product) {
     if (favouriteItemsIds.contains(product.id)) {
       favouriteItemsIds.remove(product.id);
       product.isFavourite = false;
@@ -21,22 +21,22 @@ class FavouritesController with ChangeNotifier {
       product.isFavourite = true;
     }
     notifyListeners();
-    setFavIdListToDisk();
+    setFavIdListToCache();
   }
 
-  Future<void> setFavIdListToDisk() async {
-    List<String> favIdStringList =
-        favouriteItemsIds.map((intId) => intId.toString()).toList();
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-
-    preferences.setStringList('favIdList', favIdStringList);
-  }
-
-  static Future<void> getFavIdListFromDisk() async {
+  static Future<void> getFavIdListFromCache() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     List<String> savedFavList = preferences.getStringList('favIdList') ?? [];
 
     favouriteItemsIds =
         savedFavList.map((stringId) => int.parse(stringId)).toList();
+  }
+
+  Future<void> setFavIdListToCache() async {
+    List<String> favIdStringList =
+        favouriteItemsIds.map((intId) => intId.toString()).toList();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    preferences.setStringList('favIdList', favIdStringList);
   }
 }
