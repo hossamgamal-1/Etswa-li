@@ -10,6 +10,7 @@ class Product {
   final String categoryImg;
   final List<String> imageUrls;
   bool isFavourite;
+  int quantity;
 
   Product({
     required this.id,
@@ -21,6 +22,7 @@ class Product {
     required this.categoryImg,
     required this.imageUrls,
     required this.isFavourite,
+    required this.quantity,
   });
   factory Product.fromJson(Map fetchedData) {
     num price = fetchedData['price'];
@@ -43,6 +45,7 @@ class Product {
       categoryImg: fetchedData['category']['image'],
       isFavourite:
           FavouritesController.favouriteItemsIds.contains(fetchedData['id']),
+      quantity: 1,
     );
   }
 }

@@ -1,17 +1,26 @@
-/* import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/auth_controller.dart';
+import '../../controller/email_password_auth_controller.dart';
+import '../../../../core/themes/app_light_theme.dart';
+import '../../../../modules/authentication/ui/components/auth_strings.dart';
 
-class ResetPasswordTextField extends StatelessWidget {
+class ResetPasswordTextField extends StatefulWidget {
   const ResetPasswordTextField({super.key});
 
   @override
+  State<ResetPasswordTextField> createState() => _ResetPasswordTextFieldState();
+}
+
+class _ResetPasswordTextFieldState extends State<ResetPasswordTextField> {
+  @override
   Widget build(BuildContext context) {
-    AuthController watch = context.watch<AuthController>();
-    AuthController read = context.read<AuthController>();
+    EmailPasswordAuthController watch =
+        context.watch<EmailPasswordAuthController>();
+    var textEditingController = TextEditingController();
+    // EmailPasswordAuthController read =
+    //     context.read<EmailPasswordAuthController>();
     return Container(
       width: 80.w,
       decoration: BoxDecoration(
@@ -19,11 +28,19 @@ class ResetPasswordTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
+        controller: textEditingController,
         decoration: InputDecoration(
           hintText: 'Confirm Password',
           suffixIcon: IconButton(
-            onPressed: () => read.visibleOnOffSwitcher(),
-            icon: Icon(watch.eye),
+            onPressed: () => setState(() {
+              watch.isObsecure = !watch.isObsecure;
+            }),
+            icon: watch.currentAuthMode == AuthMode.signUp
+                ? watch.isObsecure
+                    ? const Icon(Icons.visibility_off)
+                    : const Icon(Icons.visibility)
+                : Container(),
+            color: AppLightTheme.unSelectedIconColor,
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
           ),
@@ -35,9 +52,11 @@ class ResetPasswordTextField extends StatelessWidget {
         ),
         keyboardType: TextInputType.visiblePassword,
         obscureText: watch.isObsecure,
-        validator: read.resetPasswordValidator,
+        validator: (value) => (value != watch.passwordcontroller.text)
+            ? AuthStrings.passowordsAreDifferent
+            : null,
+        onSaved: (value) => textEditingController.clear(),
       ),
     );
   }
 }
- */

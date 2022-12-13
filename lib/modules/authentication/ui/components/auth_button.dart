@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/auth_controller.dart';
+import '../../controller/email_password_auth_controller.dart';
 import '../../../../core/themes/app_light_theme.dart';
+import '../../../../modules/authentication/ui/components/auth_strings.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // AuthController watch = context.watch<AuthController>();
-    AuthController read = context.read<AuthController>();
+    EmailPasswordAuthController watch =
+        context.watch<EmailPasswordAuthController>();
+    EmailPasswordAuthController read =
+        context.read<EmailPasswordAuthController>();
 
     return Container(
       margin: EdgeInsets.all(1.25.h),
@@ -28,7 +31,9 @@ class AuthButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextButton(
-        onPressed: () => read.authButtonOnPressed(context),
+        onPressed: () {
+          read.authButtonOnPressed(context);
+        },
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           shape: MaterialStateProperty.all(
@@ -37,19 +42,24 @@ class AuthButton extends StatelessWidget {
             ),
           ),
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-          child: Text(
-            /* watch.currentAuthMode == AuthMode.logIn ? */ 'Log in' /* : 'Sign up' */,
-            style: TextStyle(
-              fontFamily: 'Quicksand',
-              fontSize: 18,
-              color: AppLightTheme.canvasColor,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 1,
-            ),
-          ),
-        ),
+        child: watch.isWaiting
+            ? const CircularProgressIndicator(color: Colors.white)
+            : Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                child: Text(
+                  watch.currentAuthMode == AuthMode.logIn
+                      ? AuthStrings.buttonTextLogIn
+                      : AuthStrings.buttonTextSignUp,
+                  style: const TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontSize: 18,
+                    color: AppLightTheme.canvasColor,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 1,
+                  ),
+                ),
+              ),
       ),
     );
   }

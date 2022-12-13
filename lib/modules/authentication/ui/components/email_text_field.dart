@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/themes/app_light_theme.dart';
-import '../../controller/auth_controller.dart';
+import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 
 class EmailTextField extends StatelessWidget {
@@ -11,7 +11,8 @@ class EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthController read = context.read<AuthController>();
+    EmailPasswordAuthController read =
+        context.read<EmailPasswordAuthController>();
 
     return Container(
       width: 80.w,
@@ -21,7 +22,9 @@ class EmailTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
-        validator: read.emailTextFieldValidator,
+        validator: (value) => (value == null || !value.contains('@'))
+            ? AuthStrings.validatorEmptyEmailText
+            : null,
         onSaved: read.emailTextFieldOnSave,
         decoration: InputDecoration(
           hintText: AuthStrings.emailTextFieldHintText,

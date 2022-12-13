@@ -43,14 +43,16 @@ dependencies:
   provider: ^6.0.4
   flutter_screenutil: ^5.6.0
   flutter_statusbarcolor_ns: ^0.5.0
-  device_preview: ^1.1.0
   get_it: ^7.2.0
   image_pixels: ^3.0.0
   flutter_native_splash: ^2.2.16
   flutter_launcher_icons: ^0.11.0
-  flutter_colorpicker: ^1.0.3
   flutter_staggered_animations: ^1.1.1
   shared_preferences: ^2.0.15
+  intl: ^0.17.0
+  holding_gesture: ^1.1.0
+  firebase_core: ^2.3.0
+  firebase_auth: ^4.1.5
 
 flutter_icons:
   android: true
@@ -61,7 +63,7 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  device_preview: ^1.1.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

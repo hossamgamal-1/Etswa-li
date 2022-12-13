@@ -17,27 +17,30 @@ class PriceTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       padding: EdgeInsets.symmetric(vertical: 0.5.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
-        children: [
-          Text(
-            '${product.price}\$',
-            style: AppTextStyles.productTitle.copyWith(
-              fontSize: 24,
-              color: AppLightTheme.offerPriceColor,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: [
+            Text(
+              '${product.price}\$',
+              style: AppTextStyles.productTitle.copyWith(
+                fontSize: 4.8.sp,
+                color: AppLightTheme.offerPriceColor,
+              ),
             ),
-          ),
-          Text(
-            '${product.fakePrice.ceilToDouble() - 0.01}\$',
-            style: AppTextStyles.productTitle.copyWith(
-              fontSize: 14,
-              color: AppLightTheme.unSelectedIconColor,
-              decoration: TextDecoration.lineThrough,
+            Text(
+              '${product.fakePrice.ceilToDouble() - 0.01}\$',
+              style: AppTextStyles.productTitle.copyWith(
+                fontSize: 2.8.sp,
+                color: AppLightTheme.unSelectedIconColor,
+                decoration: TextDecoration.lineThrough,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

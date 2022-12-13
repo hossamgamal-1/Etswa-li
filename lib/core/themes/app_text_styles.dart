@@ -26,11 +26,11 @@ class AppTextStyles {
   static TextStyle get productPageButtonTextStyle => TextStyle(
         fontSize: 4.8.sp,
         fontWeight: FontWeight.w500,
-        color: AppLightTheme.cursorColor,
+        color: AppLightTheme.canvasColor,
       );
   static TextStyle get productPageDiscribtionTextStyle => TextStyle(
-        fontSize: 5.6.sp,
-        color: AppLightTheme.canvasColor,
+        fontSize: 4.8.sp,
+        color: AppLightTheme.foregroundColor,
       );
   static TextStyle get productPageAppBarTextStyle => TextStyle(
         fontSize: 5.8.sp,
@@ -38,7 +38,7 @@ class AppTextStyles {
         color: AppLightTheme.foregroundColor,
       );
   static TextStyle get productPageTitleTextStyle => TextStyle(
-        fontSize: 7.2.sp,
-        color: AppLightTheme.canvasColor,
+        fontSize: 6.2.sp,
+        color: AppLightTheme.foregroundColor,
       );
 }

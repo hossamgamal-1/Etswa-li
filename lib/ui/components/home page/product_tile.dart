@@ -6,12 +6,12 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../../core/themes/app_text_styles.dart';
 import '../../../data/database/remote_database.dart';
-import '../../../ui/components/core/product_card.dart';
+import '../core/product_card.dart';
 import '../../screens/see_all_page.dart';
 import '../../../data/entities/products.dart';
 import '../../../core/injection.dart';
-import 'list_staggered_animation.dart';
-import 'snapshot_error_waiting.dart';
+import '../core/list_staggered_animation.dart';
+import '../core/snapshot_error_waiting.dart';
 
 class ProductTile extends StatelessWidget {
   final String products;
@@ -29,13 +29,13 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     RemoteDatabase remoteDatabase = RemoteDatabase(getIt(), getIt());
 
-    final ScrollController controller = ScrollController();
+/*     final ScrollController controller = ScrollController();
     controller.addListener(() {
       if (controller.position.pixels == controller.position.maxScrollExtent) {
         remoteDatabase.getProductsData();
       }
     });
-
+ */
     return FutureBuilder(
       future: remoteDatabase.getProductsData(),
       builder: (context, snapShots) {
@@ -74,7 +74,6 @@ class ProductTile extends StatelessWidget {
                 height: 40.h,
                 child: AnimationLimiter(
                   child: ListView.builder(
-                    controller: controller,
                     itemCount: productsData.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => ListStaggeredAnimation(

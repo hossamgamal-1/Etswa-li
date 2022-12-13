@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../core/product_tile.dart';
+import 'product_tile.dart';
 import '../../../core/injection.dart';
 import '../../../ui/components/core/snapshot_error_waiting.dart';
 import '../../../ui/components/home%20page/home_page_strings.dart';

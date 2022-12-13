@@ -3,16 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/auth_controller.dart';
+import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 
-class PasswordTextField extends StatelessWidget {
+class PasswordTextField extends StatefulWidget {
   const PasswordTextField({super.key});
 
   @override
+  State<PasswordTextField> createState() => _PasswordTextFieldState();
+}
+
+class _PasswordTextFieldState extends State<PasswordTextField> {
+  @override
   Widget build(BuildContext context) {
-    AuthController watch = context.watch<AuthController>();
-    AuthController read = context.read<AuthController>();
+    EmailPasswordAuthController watch =
+        context.watch<EmailPasswordAuthController>();
+    EmailPasswordAuthController read =
+        context.read<EmailPasswordAuthController>();
     return Container(
       width: 80.w,
       margin: EdgeInsets.all(1.25.h),
@@ -21,12 +28,19 @@ class PasswordTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
-        validator: read.passwordTextFieldValidator,
+        validator: (value) => (value == null || value.length < 8)
+            ? AuthStrings.validatorShortPasswordText
+            : null,
         onSaved: read.passwordTextFieldOnSave,
         decoration: InputDecoration(
           suffixIcon: IconButton(
-            onPressed: () => read.visibleOnOffSwitcher(),
-            icon: Icon(watch.eye),
+            onPressed: () => setState(() {
+              watch.isObsecure = !watch.isObsecure;
+            }), //; read.visibleOnOffSwitcher(),
+            icon: watch.isObsecure
+                ? const Icon(Icons.visibility_off)
+                : const Icon(Icons.visibility),
+            color: AppLightTheme.unSelectedIconColor,
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
           ),

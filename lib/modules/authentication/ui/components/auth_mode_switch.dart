@@ -1,15 +1,17 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/auth_controller.dart';
+import '../../controller/email_password_auth_controller.dart';
 
 class AuthModeSwitch extends StatelessWidget {
   const AuthModeSwitch({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthController watch = context.watch<AuthController>();
-    AuthController read = context.read<AuthController>();
+    EmailPasswordAuthController watch =
+        context.watch<EmailPasswordAuthController>();
+    EmailPasswordAuthController read =
+        context.read<EmailPasswordAuthController>();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -32,4 +34,3 @@ class AuthModeSwitch extends StatelessWidget {
     );
   }
 }
- */

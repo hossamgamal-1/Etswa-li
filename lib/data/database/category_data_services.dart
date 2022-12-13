@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_constants.dart';
@@ -21,14 +21,14 @@ class CategoryDataGetter implements CategoryDataService {
       http.Response response = await http.get(Uri.parse(categoriesUrl));
       List dataList = json.decode(response.body);
 
-      try {
-        for (var data in dataList) {
+      for (var data in dataList) {
+        try {
           categories.length < dataList.length
               ? categories.add(Category.fromJson(data))
               : null;
+        } catch (error) {
+          debugPrint(error.toString());
         }
-      } catch (error) {
-        debugPrint(error.toString());
       }
     }
   }

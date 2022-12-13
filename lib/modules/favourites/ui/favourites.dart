@@ -15,27 +15,29 @@ class Favourites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Product> getProductsFromFavIdsList = [];
+
+    for (int id in FavouritesController.favouriteItemsIds) {
+      if (ProductsDataGetter.productsIds.contains(id)) {
+        getProductsFromFavIdsList.add(ProductsDataGetter.products
+            .firstWhere((product) => id == product.id));
+      }
+    }
+
     return Consumer<FavouritesController>(
-      builder: (context, value, _) => FavouritesController
-              .favouriteItemsIds.isEmpty
+      builder: (context, value, _) => getProductsFromFavIdsList.isEmpty
           ? Center(
               child: Text('You have no favorite items yet.',
                   style: AppTextStyles.categoryChipTextStyle,
                   textAlign: TextAlign.center))
           : AnimationLimiter(
               child: GridView.builder(
-                itemCount: FavouritesController.favouriteItemsIds.length,
+                itemCount: getProductsFromFavIdsList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 50.w / 40.h,
                   crossAxisCount: 2,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  List<Product> getProductsFromFavIdsList = FavouritesController
-                      .favouriteItemsIds
-                      .map((id) => ProductsDataGetter.products
-                          .firstWhere((product) => id == product.id))
-                      .toList();
-
                   return ProductsDataGetter.products.isEmpty
                       ? Container()
                       : GridStaggeredAnimation(

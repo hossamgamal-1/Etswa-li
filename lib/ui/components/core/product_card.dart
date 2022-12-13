@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -84,7 +84,11 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               OfferPercentageCircle(products[index]),
-              FavouriteButton(products[index]),
+              Positioned(
+                top: 3,
+                right: 8,
+                child: FavouriteButton(products[index]),
+              ),
             ],
           );
   }
