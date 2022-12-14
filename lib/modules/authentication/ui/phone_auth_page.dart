@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:e_commerce/modules/authentication/auth.dart';
 import 'package:e_commerce/modules/authentication/controller/phone_auth_controller.dart';
 import 'package:e_commerce/modules/authentication/phone_auth.dart';
@@ -18,41 +20,65 @@ class PhoneAuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var watch = context.watch<PhoneAuthController>();
     var read = context.read<PhoneAuthController>();
+
     return Scaffold(
       appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('What\'s your phone number?'),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
-            child: Form(
-              key: watch.phoneAuthKey2,
-              child: TextFormField(
-                cursorColor: AppLightTheme.foregroundColor,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(
-                        color: AppLightTheme.foregroundColor, width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(
-                        color: AppLightTheme.foregroundColor, width: 1),
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 3.w),
+                width: 10.w,
+                height: 10.w,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/pngegg.png'),
                   ),
                 ),
-                keyboardType: TextInputType.phone,
-                validator: (value) => value == null || value == ''
-                    ? 'write your phone number'
-                    : value.toString().toLowerCase().contains(RegExp(r'[a-z]'))
-                        ? 'unValid phone number'
-                        : value.length != 11
-                            ? 'phone number is either too short or too long'
-                            : null,
-                onSaved: read.savePhoneAuth,
               ),
-            ),
+              Container(
+                margin: EdgeInsets.only(
+                  left: 3.w,
+                  top: 5.w,
+                  bottom: 5.w,
+                ),
+                width: 80.w,
+                child: Form(
+                  key: watch.phoneAuthKey2,
+                  child: TextFormField(
+                    cursorColor: AppLightTheme.foregroundColor,
+                    decoration: InputDecoration(
+                      hintText: 'Eg. 01111111111',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                            color: AppLightTheme.foregroundColor, width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                            color: AppLightTheme.foregroundColor, width: 1),
+                      ),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    validator: (value) => value == null || value == ''
+                        ? 'write your phone number'
+                        : value
+                                .toString()
+                                .toLowerCase()
+                                .contains(RegExp(r'[a-z]'))
+                            ? 'unValid phone number'
+                            : value.length != 11
+                                ? 'phone number is either too short or too long'
+                                : null,
+                    onSaved: read.savePhoneAuth,
+                  ),
+                ),
+              ),
+            ],
           ),
           ElevatedButton(
               style: ButtonStyle(
@@ -61,8 +87,9 @@ class PhoneAuthPage extends StatelessWidget {
               onPressed: () {
                 if (watch.phoneAuthKey2.currentState!.validate()) {
                   watch.phoneAuthKey2.currentState!.save();
-                  Auth auth = Auth(getIt(), getIt());
-                  auth.verifyPhoneNumber(watch.phoneNumber);
+                  // Auth auth = Auth(getIt(), getIt());
+                  // auth.verifyPhoneNumber(watch.phoneNumber);
+                  read.codeSentSetterFalse();
                   Navigator.pushReplacement(
                     context,
                     PageTransition(
@@ -70,8 +97,8 @@ class PhoneAuthPage extends StatelessWidget {
                       type: PageTransitionType.fade,
                     ),
                   );
-                  // Auth auth = Auth(getIt(), getIt());
-                  // auth.verifyPhoneNumber(watch.phoneNumber);
+                  Timer(const Duration(milliseconds: 300),
+                      () => read.codeSentSetterTrue());
                 } else {
                   watch.phoneAuthKey2.currentState!.validate();
                 }
@@ -92,68 +119,82 @@ class OTPCodePage extends StatelessWidget {
     var read = context.read<PhoneAuthController>();
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('What\'s your OTPCode?'),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
-            child: Form(
-              key: watch.phoneAuthKey,
-              child: TextFormField(
-                cursorColor: AppLightTheme.foregroundColor,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(
-                        color: AppLightTheme.foregroundColor, width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(
-                        color: AppLightTheme.foregroundColor, width: 1),
-                  ),
-                ),
-                keyboardType: TextInputType.phone,
-                validator: (value) => value == null || value == ''
-                    ? 'write your OTPCode'
-                    : value.toString().contains(RegExp(r'[a-z]'))
-                        ? 'unValid OTPCode'
-                        : value.length != 6
-                            ? 'OTPCode is either too short or too long'
-                            : null,
-                onSaved: read.saveSmsCode,
-              ),
-            ),
-          ),
-          ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.black),
-              ),
-              onPressed: () async {
-                if (watch.phoneAuthKey.currentState!.validate()) {
-                  watch.phoneAuthKey.currentState!.save();
-
-                  PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                    verificationId: PhoneAuthHandler.verificationId,
-                    smsCode: watch.smsCode,
-                  );
-
-                  await FirebaseAuth.instance.signInWithCredential(credential);
-                  // ignore: use_build_context_synchronously
-                  Navigator.pushReplacement(
-                    context,
-                    PageTransition(
-                      child: const HomePage(),
-                      type: PageTransitionType.fade,
+      body: Center(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          constraints: BoxConstraints(maxHeight: watch.codeSent ? 30.h : 00),
+          child: !watch.codeSent
+              ? null
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('What\'s your OTPCode?'),
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
+                      child: Form(
+                        key: watch.phoneAuthKey,
+                        child: TextFormField(
+                          cursorColor: AppLightTheme.foregroundColor,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                  color: AppLightTheme.foregroundColor,
+                                  width: 1),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                  color: AppLightTheme.foregroundColor,
+                                  width: 1),
+                            ),
+                          ),
+                          keyboardType: TextInputType.phone,
+                          validator: (value) => value == null || value == ''
+                              ? 'write your OTPCode'
+                              : value.toString().contains(RegExp(r'[a-z]'))
+                                  ? 'unValid OTPCode'
+                                  : value.length != 6
+                                      ? 'OTPCode is either too short or too long'
+                                      : null,
+                          onSaved: read.saveSmsCode,
+                        ),
+                      ),
                     ),
-                  );
-                } else {
-                  watch.phoneAuthKey.currentState!.validate();
-                }
-              },
-              child: const Text('Verify'))
-        ],
+                    ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.black),
+                        ),
+                        onPressed: () async {
+                          if (watch.phoneAuthKey.currentState!.validate()) {
+                            watch.phoneAuthKey.currentState!.save();
+
+                            PhoneAuthCredential credential =
+                                PhoneAuthProvider.credential(
+                              verificationId: PhoneAuthHandler.verificationId,
+                              smsCode: watch.smsCode,
+                            );
+
+                            await FirebaseAuth.instance
+                                .signInWithCredential(credential);
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushReplacement(
+                              context,
+                              PageTransition(
+                                child: const HomePage(),
+                                type: PageTransitionType.fade,
+                              ),
+                            );
+                          } else {
+                            watch.phoneAuthKey.currentState!.validate();
+                          }
+                        },
+                        child: const Text('Verify'))
+                  ],
+                ),
+        ),
       ),
     );
   }
