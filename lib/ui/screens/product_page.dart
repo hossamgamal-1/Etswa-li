@@ -1,6 +1,3 @@
-import 'package:e_commerce/core/themes/app_text_styles.dart';
-import 'package:e_commerce/core/themes/app_light_theme.dart';
-import 'package:e_commerce/ui/components/core/stateful_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +8,9 @@ import '../../data/entities/products.dart';
 import '../components/product page/add_to_cart_button.dart';
 import '../components/product page/product_page_cart_quantity.dart';
 import '../components/product page/product_description.dart';
+import '../../core/themes/app_text_styles.dart';
+import '../../core/themes/app_light_theme.dart';
+import '../components/core/stateful_wrapper.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage(this.product, {super.key});

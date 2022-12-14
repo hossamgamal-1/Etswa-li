@@ -1,10 +1,10 @@
-import 'package:e_commerce/ui/components/core/stateful_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/themes/app_light_theme.dart';
+import '../../../ui/components/core/stateful_wrapper.dart';
 import 'components/auth_mode_switch.dart';
 import 'components/email_text_field.dart';
 import 'components/other_auth_ways.dart';

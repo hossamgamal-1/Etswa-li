@@ -1,9 +1,9 @@
-import 'package:e_commerce/core/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/themes/app_text_styles.dart';
 import '../../../ui/components/core/product_card.dart';
 import '../../../ui/components/core/grid_staggerd_animation.dart';
 import '../../../data/database/products_data_services.dart';

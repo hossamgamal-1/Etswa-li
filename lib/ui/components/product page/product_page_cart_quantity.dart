@@ -1,4 +1,3 @@
-import 'package:e_commerce/data/entities/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:holding_gesture/holding_gesture.dart';
@@ -8,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../modules/cart/controllers/cart_controller.dart';
 import '../core/favourite_button.dart';
+import '../../../data/entities/products.dart';
 
 class ProductPageCartQuantity extends StatelessWidget {
   const ProductPageCartQuantity(this.product, {super.key});

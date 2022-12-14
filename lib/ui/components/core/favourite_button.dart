@@ -1,9 +1,9 @@
-import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/entities/products.dart';
+import '../../../core/themes/app_light_theme.dart';
 import '../../../modules/favourites/controllers/favourites_controller.dart';
 
 class FavouriteButton extends StatelessWidget {

@@ -1,11 +1,11 @@
-import 'package:e_commerce/modules/authentication/auth.dart';
-import 'package:e_commerce/modules/authentication/email_password_auth.dart';
-import 'package:e_commerce/modules/authentication/phone_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../data/database/remote_database.dart';
 import '../data/database/products_data_services.dart';
 import '../data/database/category_data_services.dart';
+import '../modules/authentication/auth.dart';
+import '../modules/authentication/email_password_auth.dart';
+import '../modules/authentication/phone_auth.dart';
 
 final getIt = GetIt.instance;
 

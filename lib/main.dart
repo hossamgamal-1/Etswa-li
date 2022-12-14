@@ -18,9 +18,10 @@ import 'ui/controllers/home_page_controller.dart';
 import 'ui/controllers/product_page_controller.dart';
 import 'firebase_options.dart';
 
+//TODO: OnBoarding ui
 //TODO: Facebook , Google Auth
 //TODO: notification
-//TODO: Mapping(GeoLocator, GeoCoding)
+//TODO: Mapping(GeoLocator, GeoCoding, google maps)
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

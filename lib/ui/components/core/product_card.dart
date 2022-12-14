@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../../core/themes/app_light_theme.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../data/entities/products.dart';
 import '../../screens/product_page.dart';

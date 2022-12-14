@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/themes/app_text_styles.dart';
+import '../../../core/themes/app_light_theme.dart';
 import '../../../data/entities/products.dart';
 
 class PriceTile extends StatelessWidget {

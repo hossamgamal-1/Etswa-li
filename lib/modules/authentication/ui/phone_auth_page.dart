@@ -1,17 +1,15 @@
 import 'dart:async';
 
-import 'package:e_commerce/modules/authentication/auth.dart';
-import 'package:e_commerce/modules/authentication/controller/phone_auth_controller.dart';
-import 'package:e_commerce/modules/authentication/phone_auth.dart';
-import 'package:e_commerce/ui/screens/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/injection.dart';
+import '../phone_auth.dart';
 import '../../../core/themes/app_light_theme.dart';
+import '../controller/phone_auth_controller.dart';
+import '../../../ui/screens/home_page.dart';
 
 class PhoneAuthPage extends StatelessWidget {
   const PhoneAuthPage({super.key});

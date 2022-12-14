@@ -1,7 +1,7 @@
-import 'package:e_commerce/modules/authentication/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../auth.dart';
 import '../../../core/injection.dart';
 import '../../../ui/screens/home_page.dart';
 

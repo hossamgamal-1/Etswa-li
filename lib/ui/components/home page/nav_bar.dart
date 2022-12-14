@@ -1,10 +1,10 @@
-import 'package:e_commerce/ui/components/home%20page/home_page_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/themes/app_light_theme.dart';
 import '../../controllers/home_page_controller.dart';
+import 'home_page_strings.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});

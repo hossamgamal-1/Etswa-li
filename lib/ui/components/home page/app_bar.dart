@@ -1,4 +1,3 @@
-import 'package:e_commerce/ui/components/home%20page/home_page_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../core/themes/app_light_theme.dart';
 import '../../../modules/search/controllers/search_controller.dart';
 import '../../../modules/search/ui/search.dart';
+import 'home_page_strings.dart';
 
 class HomePageAppBar extends StatelessWidget {
   const HomePageAppBar({Key? key}) : super(key: key);

@@ -1,11 +1,10 @@
-import 'package:e_commerce/core/themes/app_text_styles.dart';
-import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../data/entities/products.dart';
+import '../../../core/themes/app_text_styles.dart';
+import '../../../core/themes/app_light_theme.dart';
 
-//color
 class OfferPercentageCircle extends StatelessWidget {
   const OfferPercentageCircle(this.product, {super.key});
   final Product product;

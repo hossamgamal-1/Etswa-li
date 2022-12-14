@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/themes/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/themes/app_light_theme.dart';
 import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 

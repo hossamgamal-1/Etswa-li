@@ -1,11 +1,11 @@
-import 'package:e_commerce/data/entities/products.dart';
-import 'package:e_commerce/modules/cart/controllers/cart_controller.dart';
-import 'package:e_commerce/ui/components/product%20page/product_page_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/themes/app_text_styles.dart';
+import '../../../data/entities/products.dart';
+import '../../../modules/cart/controllers/cart_controller.dart';
+import 'product_page_strings.dart';
 
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton(

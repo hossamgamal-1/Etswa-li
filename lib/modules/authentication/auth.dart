@@ -1,5 +1,4 @@
-import 'package:e_commerce/modules/authentication/phone_auth.dart';
-
+import 'phone_auth.dart';
 import 'email_password_auth.dart';
 
 class Auth {
