@@ -19,7 +19,7 @@ import 'ui/controllers/product_page_controller.dart';
 import 'firebase_options.dart';
 
 //TODO: Facebook , Google Auth
-
+//TODO: notification
 //TODO: Mapping(GeoLocator, GeoCoding)
 
 void main() async {
