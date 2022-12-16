@@ -22,8 +22,22 @@ class AddToCartButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: TextButton(
-          onPressed: () =>
-              product.quantity > 0 ? read.addToCart(product.id) : null,
+          onPressed: () {
+            late SnackBar snackBar;
+            if (product.quantity > 0) {
+              if (!CartController.cartProductsIds.contains(product.id)) {
+                read.addToCart(product.id);
+                snackBar = SnackBar(
+                    duration: const Duration(seconds: 1),
+                    content: Text('${product.title} is Added to your Cart.'));
+              } else {
+                snackBar = SnackBar(
+                    duration: const Duration(seconds: 1),
+                    content: Text('${product.title} is Already in your Cart.'));
+              }
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          },
           child: Text(
             ProductPageStrings.addToCart,
             style: AppTextStyles.productPageButtonTextStyle.copyWith(

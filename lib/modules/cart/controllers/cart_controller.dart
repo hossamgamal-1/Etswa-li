@@ -25,6 +25,12 @@ class CartController with ChangeNotifier {
     }
   }
 
+  removeFromCart(int id) {
+    cartProductsIds.remove(id);
+    setCartIdListToCache();
+    notifyListeners();
+  }
+
   static Future<void> getCartIdListFromCache() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     List<String> savedCartList = preferences.getStringList('favCartList') ?? [];

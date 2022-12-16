@@ -107,7 +107,7 @@ class ProductPage extends StatelessWidget {
     );
   }
 
-  Future<void> initFunction(Color backgroundColor) async {
+/*   Future<void> initFunction(Color backgroundColor) async {
     await FlutterStatusbarcolor.setStatusBarColor(
       backgroundColor,
       animate: true,
@@ -117,7 +117,7 @@ class ProductPage extends StatelessWidget {
       animate: true,
     );
   }
-
+ */
   Future<void> disposeFunction() async {
     await FlutterStatusbarcolor.setStatusBarColor(
       AppLightTheme.canvasColor,
