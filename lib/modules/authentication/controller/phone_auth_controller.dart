@@ -6,17 +6,6 @@ class PhoneAuthController with ChangeNotifier {
 
   String phoneNumber = '';
   String smsCode = '';
-  bool codeSent = false;
-
-  codeSentSetterTrue() {
-    codeSent = true;
-    notifyListeners();
-  }
-
-  codeSentSetterFalse() {
-    codeSent = false;
-    notifyListeners();
-  }
 
   savePhoneAuth(String? value) {
     phoneNumber = value!;

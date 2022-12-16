@@ -28,8 +28,7 @@ class Favourites extends StatelessWidget {
       builder: (context, value, _) => getProductsFromFavIdsList.isEmpty
           ? Center(
               child: Text('You have no favorite items yet.',
-                  style: AppTextStyles.categoryChipTextStyle,
-                  textAlign: TextAlign.center))
+                  style: AppTextStyles.mainTitle, textAlign: TextAlign.center))
           : AnimationLimiter(
               child: GridView.builder(
                 itemCount: getProductsFromFavIdsList.length,
