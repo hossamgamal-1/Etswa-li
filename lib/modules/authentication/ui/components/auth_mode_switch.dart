@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 
 class AuthModeSwitch extends StatelessWidget {
@@ -27,7 +28,7 @@ class AuthModeSwitch extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50)))),
             child: Text(
               watch.currentAuthMode == AuthMode.logIn ? 'Sign up' : 'Log in',
-              style: const TextStyle(color: Colors.cyan, fontSize: 12),
+              style: const TextStyle(color: ColorManager.cyan, fontSize: 12),
             ),
             onPressed: () => read.authModeSwitcher()),
       ],

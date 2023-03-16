@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/themes/app_light_theme.dart';
+import '../../../../core/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 
@@ -18,7 +18,7 @@ class EmailTextField extends StatelessWidget {
       width: 80.w,
       margin: EdgeInsets.all(1.25.h),
       decoration: BoxDecoration(
-        color: AppLightTheme.textFieldBackgroundColor,
+        color: ColorManager.textFieldBackgroundColor,
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
@@ -29,10 +29,10 @@ class EmailTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: AuthStrings.emailTextFieldHintText,
           hintStyle:
-              const TextStyle(color: AppLightTheme.textFieldForegroundColor),
+              const TextStyle(color: ColorManager.textFieldForegroundColor),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
-              borderSide: const BorderSide(color: Colors.transparent)),
+              borderSide: const BorderSide(color: ColorManager.transparent)),
         ),
         keyboardType: TextInputType.emailAddress,
       ),

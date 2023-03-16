@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../core/themes/app_light_theme.dart';
-import '../../../core/themes/app_text_styles.dart';
+import '../../../core/resources/app_text_styles.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../data/entities/products.dart';
 import '../../screens/product_page.dart';
 import 'favourite_button.dart';
@@ -33,7 +32,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 child: ImagePixels(
-                  defaultColor: AppLightTheme.canvasColor,
+                  defaultColor: ColorManager.white,
                   imageProvider:
                       CachedNetworkImageProvider(products[index].imageUrls[0]),
                   builder: (context, image) {
@@ -68,9 +67,10 @@ class ProductCard extends StatelessWidget {
                             child: Text(
                               products[index].title,
                               style: AppTextStyles.productTitle.copyWith(
-                                color: useWhiteForeground(backgroundColor)
-                                    ? AppLightTheme.canvasColor
-                                    : AppLightTheme.foregroundColor,
+                                color:
+                                    ((backgroundColor.computeLuminance() > 0.5))
+                                        ? ColorManager.white
+                                        : ColorManager.black,
                               ),
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.clip,

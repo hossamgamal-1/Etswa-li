@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
-import '../../../../core/themes/app_light_theme.dart';
 import '../../../../modules/authentication/ui/components/auth_strings.dart';
 
 class ResetPasswordTextField extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ResetPasswordTextFieldState extends State<ResetPasswordTextField> {
     return Container(
       width: 80.w,
       decoration: BoxDecoration(
-        color: AppLightTheme.textFieldBackgroundColor,
+        color: ColorManager.textFieldBackgroundColor,
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
@@ -40,15 +40,15 @@ class _ResetPasswordTextFieldState extends State<ResetPasswordTextField> {
                     ? const Icon(Icons.visibility_off)
                     : const Icon(Icons.visibility)
                 : Container(),
-            color: AppLightTheme.unSelectedIconColor,
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
+            color: ColorManager.unSelectedIconColor,
+            hoverColor: ColorManager.transparent,
+            splashColor: ColorManager.transparent,
           ),
           hintStyle:
-              const TextStyle(color: AppLightTheme.textFieldForegroundColor),
+              const TextStyle(color: ColorManager.textFieldForegroundColor),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: Colors.transparent)),
+              borderSide: const BorderSide(color: ColorManager.transparent)),
         ),
         keyboardType: TextInputType.visiblePassword,
         obscureText: watch.isObsecure,

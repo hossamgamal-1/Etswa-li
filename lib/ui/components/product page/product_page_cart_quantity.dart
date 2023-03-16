@@ -4,10 +4,11 @@ import 'package:holding_gesture/holding_gesture.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/themes/app_text_styles.dart';
+import '../../../core/resources/app_text_styles.dart';
+import '../../../core/resources/color_manager.dart';
+import '../../../data/entities/products.dart';
 import '../../../modules/cart/controllers/cart_controller.dart';
 import '../core/favourite_button.dart';
-import '../../../data/entities/products.dart';
 
 class ProductPageCartQuantity extends StatelessWidget {
   const ProductPageCartQuantity(this.product, {super.key});
@@ -50,7 +51,7 @@ class ProductPageCartQuantity extends StatelessWidget {
       {required IconData icon, required Function() onPressed}) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 0.7),
+        border: Border.all(color: ColorManager.grey, width: 0.7),
         borderRadius: BorderRadius.circular(16),
       ),
       margin: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10),

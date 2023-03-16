@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/themes/app_light_theme.dart';
+import '../../../core/resources/color_manager.dart';
 
 class HomePageDrawer extends StatelessWidget {
   const HomePageDrawer({super.key});
@@ -14,13 +14,13 @@ class HomePageDrawer extends StatelessWidget {
     return Drawer(
       child: SafeArea(
         child: Container(
-          color: AppLightTheme.cursorColor,
+          color: ColorManager.cursorColor,
           child: Column(
             children: [
               SizedBox(height: 5.h),
               ListTile(
                 title: Text(user!.email.toString()),
-                textColor: AppLightTheme.canvasColor,
+                textColor: ColorManager.white,
                 subtitle: Row(
                   children: [
                     Container(
@@ -37,26 +37,26 @@ class HomePageDrawer extends StatelessWidget {
               SizedBox(height: 5.h),
               const ListTile(
                 leading: Icon(Icons.home),
-                iconColor: Colors.white,
+                iconColor: ColorManager.white,
                 title: Text('Home'),
-                textColor: Colors.white,
+                textColor: ColorManager.white,
               ),
               const ListTile(
                 leading: Icon(Icons.favorite),
-                iconColor: Colors.white,
+                iconColor: ColorManager.white,
                 title: Text('Likes'),
-                textColor: Colors.white,
+                textColor: ColorManager.white,
               ),
               const ListTile(
                 leading: Icon(Icons.shopping_cart),
-                iconColor: Colors.white,
-                textColor: Colors.white,
+                iconColor: ColorManager.white,
+                textColor: ColorManager.white,
                 title: Text('Cart'),
               ),
               const ListTile(
                 leading: Icon(Icons.person),
-                iconColor: Colors.white,
-                textColor: Colors.white,
+                iconColor: ColorManager.white,
+                textColor: ColorManager.white,
                 title: Text('Profile'),
               ),
             ],

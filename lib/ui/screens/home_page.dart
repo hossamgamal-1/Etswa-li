@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/themes/app_light_theme.dart';
 import '../../data/database/products_data_services.dart';
 import '../../modules/favourites/ui/favourites.dart';
 import '../../modules/cart/ui/cart.dart';
-import '../../ui/components/core/stateful_wrapper.dart';
 import '../../ui/controllers/home_page_controller.dart';
 import '../components/home page/drawer.dart';
 import '../components/home page/home_page_strings.dart';
@@ -48,33 +45,19 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StatefulWrapper(
-      initFunction: () async {
-        await FlutterStatusbarcolor.getNavigationBarColor() !=
-                AppLightTheme.canvasColor
-            ? await FlutterStatusbarcolor.setStatusBarColor(
-                AppLightTheme.canvasColor)
-            : null;
-        await FlutterStatusbarcolor.getNavigationBarColor() !=
-                AppLightTheme.canvasColor
-            ? await FlutterStatusbarcolor.setNavigationBarColor(
-                AppLightTheme.canvasColor)
-            : null;
-      },
-      child: ListView(
-        children: [
-          SizedBox(height: 12.h, child: const CategoryChip()),
-          SizedBox(
-            height: 46.h,
-            child: ProductTile(
-              products: HomePageStrings.productTileProducts,
-              seeAll: HomePageStrings.productTileSeeAll,
-              productsData: ProductsDataGetter.products,
-            ),
+    return ListView(
+      children: [
+        SizedBox(height: 12.h, child: const CategoryChip()),
+        SizedBox(
+          height: 46.h,
+          child: ProductTile(
+            products: HomePageStrings.productTileProducts,
+            seeAll: HomePageStrings.productTileSeeAll,
+            productsData: ProductsDataGetter.products,
           ),
-          const CategoriesTiles()
-        ],
-      ),
+        ),
+        const CategoriesTiles()
+      ],
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/resources/color_manager.dart';
+
 class ForgotPasswordButton extends StatelessWidget {
   const ForgotPasswordButton({
     Key? key,
@@ -13,7 +15,7 @@ class ForgotPasswordButton extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)))),
       child: const Text(
         'Forgot your password?',
-        style: TextStyle(color: Colors.cyan, fontSize: 12),
+        style: TextStyle(color: ColorManager.cyan, fontSize: 12),
       ),
       onPressed: () {
         //SnackBar

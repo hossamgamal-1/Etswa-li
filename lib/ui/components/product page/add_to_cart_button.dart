@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/themes/app_text_styles.dart';
+import '../../../core/resources/app_text_styles.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../data/entities/products.dart';
 import '../../../modules/cart/controllers/cart_controller.dart';
 import 'product_page_strings.dart';
@@ -41,9 +41,9 @@ class AddToCartButton extends StatelessWidget {
           child: Text(
             ProductPageStrings.addToCart,
             style: AppTextStyles.productPageButtonTextStyle.copyWith(
-              color: useWhiteForeground(backgroundColor)
-                  ? Colors.white
-                  : Colors.black,
+              color: ((backgroundColor.computeLuminance() > 0.5))
+                  ? ColorManager.white
+                  : ColorManager.black,
             ),
           )),
     );

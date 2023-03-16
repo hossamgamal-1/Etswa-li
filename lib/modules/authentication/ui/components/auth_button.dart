@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/email_password_auth_controller.dart';
-import '../../../../core/themes/app_light_theme.dart';
+import '../../../../core/resources/color_manager.dart';
 import '../../../../modules/authentication/ui/components/auth_strings.dart';
+import '../../controller/email_password_auth_controller.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({super.key});
@@ -35,7 +35,7 @@ class AuthButton extends StatelessWidget {
           read.authButtonOnPressed(context);
         },
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          backgroundColor: MaterialStateProperty.all(ColorManager.transparent),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -43,7 +43,7 @@ class AuthButton extends StatelessWidget {
           ),
         ),
         child: watch.isWaiting
-            ? const CircularProgressIndicator(color: Colors.white)
+            ? const CircularProgressIndicator(color: ColorManager.white)
             : Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
@@ -54,7 +54,7 @@ class AuthButton extends StatelessWidget {
                   style: const TextStyle(
                     fontFamily: 'Quicksand',
                     fontSize: 18,
-                    color: AppLightTheme.canvasColor,
+                    color: ColorManager.white,
                     fontWeight: FontWeight.w400,
                     letterSpacing: 1,
                   ),

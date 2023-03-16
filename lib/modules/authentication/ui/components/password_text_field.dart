@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/themes/app_light_theme.dart';
+import '../../../../core/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 
@@ -24,7 +24,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       width: 80.w,
       margin: EdgeInsets.all(1.25.h),
       decoration: BoxDecoration(
-        color: AppLightTheme.textFieldBackgroundColor,
+        color: ColorManager.textFieldBackgroundColor,
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
@@ -40,16 +40,16 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
             icon: watch.isObsecure
                 ? const Icon(Icons.visibility_off)
                 : const Icon(Icons.visibility),
-            color: AppLightTheme.unSelectedIconColor,
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
+            color: ColorManager.unSelectedIconColor,
+            hoverColor: ColorManager.transparent,
+            splashColor: ColorManager.transparent,
           ),
           hintText: AuthStrings.passwordTextFieldHintText,
           hintStyle:
-              const TextStyle(color: AppLightTheme.textFieldForegroundColor),
+              const TextStyle(color: ColorManager.textFieldForegroundColor),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: AppLightTheme.transperantColor),
+            borderSide: const BorderSide(color: ColorManager.transperantColor),
           ),
         ),
         keyboardType: TextInputType.visiblePassword,

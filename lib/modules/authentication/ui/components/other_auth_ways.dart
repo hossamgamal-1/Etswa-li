@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../../../core/resources/color_manager.dart';
 import '../phone_auth_page.dart';
 
 class OtherAuthWays extends StatelessWidget {
@@ -20,14 +21,14 @@ class OtherAuthWays extends StatelessWidget {
                   child: const PhoneAuthPage(),
                   type: PageTransitionType.bottomToTop)),
         ),
-        boxer(Icons.facebook, color: Colors.blue),
-        boxer(Icons.email, color: Colors.cyan),
+        boxer(Icons.facebook, color: ColorManager.blue),
+        boxer(Icons.email, color: ColorManager.cyan),
       ],
     );
   }
 
   InkWell boxer(IconData iconData,
-      {Color color = Colors.black, Function()? function}) {
+      {Color color = ColorManager.black, Function()? function}) {
     return InkWell(
       onTap: function == null ? null : () => function(),
       child: Container(
@@ -35,7 +36,7 @@ class OtherAuthWays extends StatelessWidget {
         height: 50,
         width: 50,
         color: color,
-        child: Icon(iconData, size: 40, color: Colors.white),
+        child: Icon(iconData, size: 40, color: ColorManager.white),
       ),
     );
   }

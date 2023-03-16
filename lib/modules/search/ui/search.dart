@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/themes/app_light_theme.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../ui/components/core/grid_staggerd_animation.dart';
 import '../../../ui/components/core/product_card.dart';
 import '../controllers/search_controller.dart';
@@ -20,13 +20,13 @@ class Search extends StatelessWidget {
           height: kToolbarHeight - 10,
           child: TextField(
             textAlignVertical: TextAlignVertical.bottom,
-            cursorColor: AppLightTheme.cursorColor,
+            cursorColor: ColorManager.cursorColor,
             decoration: InputDecoration(
               hintText: SearchStrings.appBarSearchHintText,
               border: outLinedBorder(),
               focusedBorder: outLinedBorder(),
               prefixIcon: const Icon(Icons.search),
-              prefixIconColor: AppLightTheme.unSelectedIconColor,
+              prefixIconColor: ColorManager.unSelectedIconColor,
             ),
             onChanged: context.watch<SearchController>().search,
             autofocus: true,
@@ -39,7 +39,7 @@ class Search extends StatelessWidget {
             : value.searchValue.length < 3
                 ? const Center(
                     child: CircularProgressIndicator(
-                        color: AppLightTheme.unSelectedIconColor))
+                        color: ColorManager.unSelectedIconColor))
                 : value.searchValue.length > 2 && value.searchedProducts.isEmpty
                     ? const Center(
                         child: Text(SearchStrings.searchWrongValueText))
@@ -54,9 +54,12 @@ class Search extends StatelessWidget {
                           itemBuilder: (context, index) =>
                               GridStaggeredAnimation(
                             listLength: value.searchedProducts.length,
-                            child: ProductCard(
-                              products: value.searchedProducts,
-                              index: index,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              child: ProductCard(
+                                products: value.searchedProducts,
+                                index: index,
+                              ),
                             ),
                           ),
                         ),
@@ -66,8 +69,8 @@ class Search extends StatelessWidget {
   }
 
   OutlineInputBorder outLinedBorder() => OutlineInputBorder(
-        borderSide: const BorderSide(
-            color: AppLightTheme.unSelectedIconColor, width: 1),
+        borderSide:
+            const BorderSide(color: ColorManager.unSelectedIconColor, width: 1),
         borderRadius: BorderRadius.circular(12),
       );
 }

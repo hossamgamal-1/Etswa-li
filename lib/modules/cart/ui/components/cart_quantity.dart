@@ -4,7 +4,7 @@ import 'package:holding_gesture/holding_gesture.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/themes/app_text_styles.dart';
+import '../../../../core/resources/app_text_styles.dart';
 import '../../../../data/entities/products.dart';
 import '../../controllers/cart_controller.dart';
 

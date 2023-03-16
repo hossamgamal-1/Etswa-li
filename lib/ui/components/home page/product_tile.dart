@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../core/themes/app_light_theme.dart';
-import '../../../core/themes/app_text_styles.dart';
+import '../../../core/resources/app_text_styles.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../data/database/remote_database.dart';
 import '../core/product_card.dart';
 import '../../screens/see_all_page.dart';
@@ -62,7 +62,7 @@ class ProductTile extends StatelessWidget {
                   child: Text(
                     seeAll,
                     style: AppTextStyles.productTitle
-                        .copyWith(color: AppLightTheme.foregroundColor),
+                        .copyWith(color: ColorManager.black),
                   ),
                 ),
                 const SizedBox(width: 10),

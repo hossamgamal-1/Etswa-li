@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/themes/app_text_styles.dart';
-import '../../../core/themes/app_light_theme.dart';
+import '../../../core/resources/app_text_styles.dart';
+import '../../../core/resources/color_manager.dart';
 
 class SnapShotErrorWaitingHandler extends StatelessWidget {
   const SnapShotErrorWaitingHandler(
@@ -15,13 +15,13 @@ class SnapShotErrorWaitingHandler extends StatelessWidget {
             child: Text(
               'An error happend/n${snapShots.error}',
               style: AppTextStyles.categoryChipTextStyle
-                  .copyWith(color: AppLightTheme.offerPriceColor),
+                  .copyWith(color: ColorManager.offerPriceColor),
             ),
           )
         : snapShots.connectionState == ConnectionState.waiting
             ? const Center(
                 child: CircularProgressIndicator(
-                    color: AppLightTheme.unSelectedIconColor))
+                    color: ColorManager.unSelectedIconColor))
             : child;
   }
 }

@@ -1,17 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/injection.dart';
-import '../auth.dart';
-import '../phone_auth.dart';
-import '../../../core/themes/app_light_theme.dart';
-import '../controller/phone_auth_controller.dart';
-import '../../../ui/screens/home_page.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../ui/components/core/list_staggered_animation.dart';
+import '../../../ui/screens/home_page.dart';
+import '../auth.dart';
+import '../controller/phone_auth_controller.dart';
+import '../phone_auth.dart';
 
 class PhoneAuthPage extends StatelessWidget {
   const PhoneAuthPage({super.key});
@@ -49,18 +49,18 @@ class PhoneAuthPage extends StatelessWidget {
                 child: Form(
                   key: watch.phoneAuthKey2,
                   child: TextFormField(
-                    cursorColor: AppLightTheme.foregroundColor,
+                    cursorColor: ColorManager.black,
                     decoration: InputDecoration(
                       hintText: 'Eg. 01111111111',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: const BorderSide(
-                            color: AppLightTheme.foregroundColor, width: 1),
+                            color: ColorManager.black, width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: const BorderSide(
-                            color: AppLightTheme.foregroundColor, width: 1),
+                            color: ColorManager.black, width: 1),
                       ),
                     ),
                     keyboardType: TextInputType.phone,
@@ -82,7 +82,7 @@ class PhoneAuthPage extends StatelessWidget {
           ),
           ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.black),
+                backgroundColor: MaterialStateProperty.all(ColorManager.black),
               ),
               onPressed: () {
                 if (watch.phoneAuthKey2.currentState!.validate()) {
@@ -129,17 +129,17 @@ class OTPCodePage extends StatelessWidget {
                   child: Form(
                     key: watch.phoneAuthKey,
                     child: TextFormField(
-                      cursorColor: AppLightTheme.foregroundColor,
+                      cursorColor: ColorManager.black,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: const BorderSide(
-                              color: AppLightTheme.foregroundColor, width: 1),
+                              color: ColorManager.black, width: 1),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: const BorderSide(
-                              color: AppLightTheme.foregroundColor, width: 1),
+                              color: ColorManager.black, width: 1),
                         ),
                       ),
                       keyboardType: TextInputType.phone,
@@ -156,7 +156,8 @@ class OTPCodePage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      backgroundColor:
+                          MaterialStateProperty.all(ColorManager.black),
                     ),
                     onPressed: () async {
                       if (watch.phoneAuthKey.currentState!.validate()) {

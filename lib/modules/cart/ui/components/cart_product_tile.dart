@@ -1,14 +1,13 @@
-import 'package:e_commerce/modules/cart/controllers/cart_controller.dart';
+import '../../controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/themes/app_light_theme.dart';
-import '../../../../core/themes/app_text_styles.dart';
+import '../../../../core/resources/app_text_styles.dart';
+import '../../../../core/resources/color_manager.dart';
 import '../../../../data/entities/products.dart';
 import '../../../../ui/components/core/price_tile.dart';
 import '../../../../ui/screens/product_page.dart';
@@ -28,7 +27,7 @@ class CartProductTile extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             child: const Text(
               'Cancel',
-              style: TextStyle(color: AppLightTheme.offerPriceColor),
+              style: TextStyle(color: ColorManager.offerPriceColor),
             )),
         TextButton(
             onPressed: () {
@@ -38,7 +37,7 @@ class CartProductTile extends StatelessWidget {
             },
             child: const Text(
               'OK',
-              style: TextStyle(color: AppLightTheme.foregroundColor),
+              style: TextStyle(color: ColorManager.black),
             )),
       ],
     );
@@ -49,8 +48,9 @@ class CartProductTile extends StatelessWidget {
         imageProvider: CachedNetworkImageProvider(product.imageUrls[0]),
         builder: (context, img) {
           Color backgroundColor = img.pixelColorAt!(0, 0);
-          Color foregroundColor =
-              useWhiteForeground(backgroundColor) ? Colors.white : Colors.black;
+          Color foregroundColor = ((backgroundColor.computeLuminance() > 0.5))
+              ? ColorManager.white
+              : ColorManager.black;
           return InkWell(
             onTap: () => Navigator.push(
               context,

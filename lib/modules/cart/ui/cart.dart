@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/themes/app_text_styles.dart';
+import '../../../core/resources/app_text_styles.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../data/database/products_data_services.dart';
 import '../../../data/entities/products.dart';
 import '../controllers/cart_controller.dart';
 import 'components/cart_product_tile.dart';
-import '../../../core/themes/app_light_theme.dart';
 import '../../../ui/components/core/list_staggered_animation.dart';
 
 class CartPage extends StatelessWidget {
@@ -72,7 +72,7 @@ class CartPage extends StatelessWidget {
                               : '${(watch.fakeTotal - watch.fakeOffer).ceilToDouble() - 0.01}\$',
                           style: AppTextStyles.productTitle.copyWith(
                             fontSize: 4.8.sp,
-                            color: AppLightTheme.offerPriceColor,
+                            color: ColorManager.offerPriceColor,
                           ),
                         ),
                         TextSpan(
@@ -81,7 +81,7 @@ class CartPage extends StatelessWidget {
                               : '${watch.fakeTotal.ceilToDouble() - 0.01}\$',
                           style: AppTextStyles.productTitle.copyWith(
                             fontSize: 2.8.sp,
-                            color: AppLightTheme.unSelectedIconColor,
+                            color: ColorManager.unSelectedIconColor,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
@@ -91,13 +91,13 @@ class CartPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: AppLightTheme.cursorColor,
+                      color: ColorManager.cursorColor,
                     ),
                     child: TextButton(
                       onPressed: () {},
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
+                            MaterialStateProperty.all(ColorManager.transparent),
                       ),
                       child: Text(
                         'Check Out',

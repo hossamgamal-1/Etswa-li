@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 
@@ -19,7 +20,7 @@ class WelcomeText extends StatelessWidget {
               : AuthStrings.welcomeTextSignUp,
           style: const TextStyle(
             letterSpacing: 2,
-            color: Colors.black,
+            color: ColorManager.black,
             fontFamily: 'Poppings',
             fontWeight: FontWeight.w400,
             fontSize: 18,
@@ -28,7 +29,7 @@ class WelcomeText extends StatelessWidget {
             TextSpan(
               text: '\nCONTINUE',
               style: TextStyle(
-                color: Colors.black,
+                color: ColorManager.black,
                 fontSize: 32,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Quicksand',

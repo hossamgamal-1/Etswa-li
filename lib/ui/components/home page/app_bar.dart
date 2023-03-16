@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/themes/app_light_theme.dart';
+import '../../../core/resources/color_manager.dart';
 import '../../../modules/search/controllers/search_controller.dart';
 import '../../../modules/search/ui/search.dart';
 import 'home_page_strings.dart';
@@ -17,13 +17,13 @@ class HomePageAppBar extends StatelessWidget {
         height: kToolbarHeight - 10,
         child: TextField(
           textAlignVertical: TextAlignVertical.bottom,
-          cursorColor: AppLightTheme.cursorColor,
+          cursorColor: ColorManager.cursorColor,
           decoration: InputDecoration(
             hintText: HomePageStrings.appBarSearchHintText,
             border: outLinedBorder(),
             focusedBorder: outLinedBorder(),
             prefixIcon: const Icon(Icons.search),
-            prefixIconColor: AppLightTheme.unSelectedIconColor,
+            prefixIconColor: ColorManager.unSelectedIconColor,
           ),
           readOnly: true,
           focusNode: FocusNode(canRequestFocus: false),
@@ -45,8 +45,8 @@ class HomePageAppBar extends StatelessWidget {
   }
 
   OutlineInputBorder outLinedBorder() => OutlineInputBorder(
-        borderSide: const BorderSide(
-            color: AppLightTheme.unSelectedIconColor, width: 1),
+        borderSide:
+            const BorderSide(color: ColorManager.unSelectedIconColor, width: 1),
         borderRadius: BorderRadius.circular(12),
       );
 }

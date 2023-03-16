@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/themes/app_text_styles.dart';
+import '../../../core/resources/app_text_styles.dart';
 import '../../../data/entities/products.dart';
 import 'product_page_strings.dart';
 
