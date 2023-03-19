@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/resources/color_manager.dart';
+import '../../../../ui/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 import '../../../../modules/authentication/ui/components/auth_strings.dart';
 

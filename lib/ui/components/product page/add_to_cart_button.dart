@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../core/resources/color_manager.dart';
-import '../../../data/entities/products.dart';
+import '../../../data/model/product_details.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/fonts_manager.dart';
 import '../../../modules/cart/controllers/cart_controller.dart';
 import 'product_page_strings.dart';
 
@@ -11,7 +12,7 @@ class AddToCartButton extends StatelessWidget {
   const AddToCartButton(
       {super.key, required this.product, required this.backgroundColor});
   final Color backgroundColor;
-  final Product product;
+  final ProductDetails product;
   @override
   Widget build(BuildContext context) {
     var read = context.read<CartController>();
@@ -40,11 +41,11 @@ class AddToCartButton extends StatelessWidget {
           },
           child: Text(
             ProductPageStrings.addToCart,
-            style: AppTextStyles.productPageButtonTextStyle.copyWith(
-              color: ((backgroundColor.computeLuminance() > 0.5))
-                  ? ColorManager.white
-                  : ColorManager.black,
-            ),
+            style: getRegularTextStyle(
+                color: ((backgroundColor.computeLuminance() > 0.5))
+                    ? ColorManager.white
+                    : ColorManager.black,
+                fontSize: FontSize.s4.sp),
           )),
     );
   }

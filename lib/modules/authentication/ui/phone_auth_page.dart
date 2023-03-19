@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/injection.dart';
-import '../../../core/resources/color_manager.dart';
+import '../../../ui/resources/color_manager.dart';
 import '../../../ui/components/core/list_staggered_animation.dart';
 import '../../../ui/screens/home_page.dart';
 import '../auth.dart';
@@ -87,7 +87,7 @@ class PhoneAuthPage extends StatelessWidget {
               onPressed: () {
                 if (watch.phoneAuthKey2.currentState!.validate()) {
                   watch.phoneAuthKey2.currentState!.save();
-                  Auth auth = Auth(getIt(), getIt());
+                  Auth auth = Auth(sL(), sL());
                   auth.verifyPhoneNumber(watch.phoneNumber);
 
                   Navigator.pushReplacement(

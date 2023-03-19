@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../core/resources/color_manager.dart';
+import '../../../ui/resources/color_manager.dart';
+import '../../../ui/resources/fonts_manager.dart';
 import '../../../data/database/products_data_services.dart';
-import '../../../data/entities/products.dart';
+import '../../../data/model/product.dart';
 import '../controllers/cart_controller.dart';
 import 'components/cart_product_tile.dart';
 import '../../../ui/components/core/list_staggered_animation.dart';
@@ -39,7 +39,8 @@ class CartPage extends StatelessWidget {
         ? Center(
             child: Text(
               'You have no cart items yet.',
-              style: AppTextStyles.mainTitle,
+              style: getRegularTextStyle(
+                  color: ColorManager.black, fontSize: FontSize.s4_4.sp),
             ),
           )
         : Column(
@@ -64,34 +65,34 @@ class CartPage extends StatelessWidget {
                   RichText(
                     text: TextSpan(
                       text: 'Total: ',
-                      style: AppTextStyles.productPageDiscribtionTextStyle,
+                      style: getRegularTextStyle(
+                          color: ColorManager.black,
+                          fontSize: FontSize.s4_8.sp),
                       children: [
                         TextSpan(
-                          text: watch.fakeTotal == 0
-                              ? '0'
-                              : '${(watch.fakeTotal - watch.fakeOffer).ceilToDouble() - 0.01}\$',
-                          style: AppTextStyles.productTitle.copyWith(
-                            fontSize: 4.8.sp,
-                            color: ColorManager.offerPriceColor,
-                          ),
-                        ),
+                            text: watch.fakeTotal == 0
+                                ? '0'
+                                : '${(watch.fakeTotal - watch.fakeOffer).ceilToDouble() - 0.01}\$',
+                            style: getRegularTextStyle(
+                                color: ColorManager.offerPriceColor,
+                                fontSize: FontSize.s4_8.sp)),
                         TextSpan(
-                          text: watch.fakeTotal == 0
-                              ? null
-                              : '${watch.fakeTotal.ceilToDouble() - 0.01}\$',
-                          style: AppTextStyles.productTitle.copyWith(
-                            fontSize: 2.8.sp,
-                            color: ColorManager.unSelectedIconColor,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
+                            text: watch.fakeTotal == 0
+                                ? null
+                                : '${watch.fakeTotal.ceilToDouble() - 0.01}\$',
+                            style: getRegularTextStyle(
+                                    color: ColorManager.unSelectedIconColor,
+                                    fontSize: FontSize.s3.sp)
+                                .copyWith(
+                              decoration: TextDecoration.lineThrough,
+                            )),
                       ],
                     ),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: ColorManager.cursorColor,
+                      color: ColorManager.primaryColor,
                     ),
                     child: TextButton(
                       onPressed: () {},
@@ -99,11 +100,10 @@ class CartPage extends StatelessWidget {
                         backgroundColor:
                             MaterialStateProperty.all(ColorManager.transparent),
                       ),
-                      child: Text(
-                        'Check Out',
-                        style: AppTextStyles.productPageButtonTextStyle
-                            .copyWith(fontSize: 3.3.sp),
-                      ),
+                      child: Text('Check Out',
+                          style: getMediumTextStyle(
+                              color: ColorManager.white,
+                              fontSize: FontSize.s3_2.sp)),
                     ),
                   ),
                 ],

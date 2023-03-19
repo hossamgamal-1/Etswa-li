@@ -4,15 +4,15 @@ import 'package:holding_gesture/holding_gesture.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../core/resources/color_manager.dart';
-import '../../../data/entities/products.dart';
+import '../../../data/model/product_details.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/fonts_manager.dart';
 import '../../../modules/cart/controllers/cart_controller.dart';
 import '../core/favourite_button.dart';
 
 class ProductPageCartQuantity extends StatelessWidget {
   const ProductPageCartQuantity(this.product, {super.key});
-  final Product product;
+  final ProductDetails product;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,8 @@ class ProductPageCartQuantity extends StatelessWidget {
               Consumer<CartController>(
                 builder: (BuildContext context, value, Widget? child) => Text(
                   NumberFormat('00').format(product.quantity),
-                  style: AppTextStyles.productPageDiscribtionTextStyle,
+                  style: getRegularTextStyle(
+                      color: ColorManager.black, fontSize: FontSize.s4_8.sp),
                 ),
               ),
               addRemoveIconTile(

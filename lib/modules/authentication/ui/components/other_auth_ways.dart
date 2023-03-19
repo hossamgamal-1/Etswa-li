@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../../core/resources/color_manager.dart';
+import '../../../../ui/resources/color_manager.dart';
 import '../phone_auth_page.dart';
 
 class OtherAuthWays extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/resources/color_manager.dart';
+import '../../resources/color_manager.dart';
 
 class HomePageDrawer extends StatelessWidget {
   const HomePageDrawer({super.key});
@@ -14,7 +14,7 @@ class HomePageDrawer extends StatelessWidget {
     return Drawer(
       child: SafeArea(
         child: Container(
-          color: ColorManager.cursorColor,
+          color: ColorManager.primaryColor,
           child: Column(
             children: [
               SizedBox(height: 5.h),

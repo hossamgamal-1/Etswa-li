@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/color_manager.dart';
+import '../../../ui/resources/color_manager.dart';
 import '../../../ui/components/core/grid_staggerd_animation.dart';
 import '../../../ui/components/core/product_card.dart';
 import '../controllers/search_controller.dart';
@@ -20,7 +20,7 @@ class Search extends StatelessWidget {
           height: kToolbarHeight - 10,
           child: TextField(
             textAlignVertical: TextAlignVertical.bottom,
-            cursorColor: ColorManager.cursorColor,
+            cursorColor: ColorManager.primaryColor,
             decoration: InputDecoration(
               hintText: SearchStrings.appBarSearchHintText,
               border: outLinedBorder(),

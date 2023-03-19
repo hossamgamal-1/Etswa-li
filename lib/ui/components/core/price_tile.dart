@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../core/resources/color_manager.dart';
-import '../../../data/entities/products.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/fonts_manager.dart';
+import '../../../data/model/product.dart';
 
 class PriceTile extends StatelessWidget {
   const PriceTile(this.product, {super.key});
@@ -24,20 +24,16 @@ class PriceTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: [
-            Text(
-              '${product.price}\$',
-              style: AppTextStyles.productTitle.copyWith(
-                fontSize: 4.8.sp,
-                color: ColorManager.offerPriceColor,
-              ),
-            ),
+            Text('${product.price}\$',
+                style: getRegularTextStyle(
+                    color: ColorManager.offerPriceColor,
+                    fontSize: FontSize.s4_8.sp)),
             Text(
               '${product.fakePrice.ceilToDouble() - 0.01}\$',
-              style: AppTextStyles.productTitle.copyWith(
-                fontSize: 2.8.sp,
-                color: ColorManager.unSelectedIconColor,
-                decoration: TextDecoration.lineThrough,
-              ),
+              style: getRegularTextStyle(
+                      color: ColorManager.unSelectedIconColor,
+                      fontSize: FontSize.s3.sp)
+                  .copyWith(decoration: TextDecoration.lineThrough),
             ),
           ],
         ),

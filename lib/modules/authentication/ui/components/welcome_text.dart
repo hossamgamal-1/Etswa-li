@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/resources/color_manager.dart';
+import '../../../../ui/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 

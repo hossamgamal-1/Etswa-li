@@ -3,11 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/app_text_styles.dart';
+import '../../../ui/resources/color_manager.dart';
+import '../../../ui/resources/fonts_manager.dart';
 import '../../../ui/components/core/product_card.dart';
 import '../../../ui/components/core/grid_staggerd_animation.dart';
 import '../../../data/database/products_data_services.dart';
-import '../../../data/entities/products.dart';
+import '../../../data/model/product.dart';
 import '../controllers/favourites_controller.dart';
 
 class Favourites extends StatelessWidget {
@@ -28,7 +29,9 @@ class Favourites extends StatelessWidget {
       builder: (context, value, _) => getProductsFromFavIdsList.isEmpty
           ? Center(
               child: Text('You have no favorite items yet.',
-                  style: AppTextStyles.mainTitle, textAlign: TextAlign.center))
+                  style: getRegularTextStyle(
+                      color: ColorManager.black, fontSize: FontSize.s4_4.sp),
+                  textAlign: TextAlign.center))
           : AnimationLimiter(
               child: GridView.builder(
                 itemCount: getProductsFromFavIdsList.length,

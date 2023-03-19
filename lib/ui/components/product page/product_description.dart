@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../data/entities/products.dart';
+import '../../../data/model/product_details.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/fonts_manager.dart';
 import 'product_page_strings.dart';
 
 class ProductDescription extends StatelessWidget {
@@ -10,7 +12,7 @@ class ProductDescription extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final ProductDetails product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +24,13 @@ class ProductDescription extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: ProductPageStrings.about,
-          style: AppTextStyles.productPageTitleTextStyle,
+          style: getRegularTextStyle(
+              color: ColorManager.black, fontSize: FontSize.s6_2.sp),
           children: [
             TextSpan(
               text: '\n${product.description}',
-              style: AppTextStyles.productPageDiscribtionTextStyle,
+              style: getRegularTextStyle(
+                  color: ColorManager.black, fontSize: FontSize.s4_8.sp),
             ),
           ],
         ),

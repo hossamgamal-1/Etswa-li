@@ -49,7 +49,7 @@ class EmailPasswordAuthController with ChangeNotifier {
   }
 
   Future<void> logInAuth(context) async {
-    Auth auth = Auth(getIt(), getIt());
+    Auth auth = Auth(sL(), sL());
     try {
       await auth.logInEmailAndPassword(email, password);
       // ignore: use_build_context_synchronously
@@ -70,7 +70,7 @@ class EmailPasswordAuthController with ChangeNotifier {
   }
 
   Future<void> signUpAuth(context) async {
-    Auth auth = Auth(getIt(), getIt());
+    Auth auth = Auth(sL(), sL());
     try {
       await auth.signUpEmailAndPassword(email, password);
       // ignore: use_build_context_synchronously

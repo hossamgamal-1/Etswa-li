@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../core/resources/color_manager.dart';
-import '../../../data/entities/products.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/fonts_manager.dart';
+import '../../../data/model/product.dart';
 
 class OfferPercentageCircle extends StatelessWidget {
   const OfferPercentageCircle(this.product, {super.key});
@@ -24,7 +24,7 @@ class OfferPercentageCircle extends StatelessWidget {
           child: FittedBox(
             child: Text(
               '${(((product.fakePrice - product.price) / product.fakePrice) * 100).toInt()}% OFF!',
-              style: AppTextStyles.offerPercentageCircleTextStyle,
+              style: getRegularTextStyle(color: ColorManager.white),
             ),
           ),
         ),

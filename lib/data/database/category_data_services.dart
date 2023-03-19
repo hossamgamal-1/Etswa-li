@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_constants.dart';
-import '../entities/categories.dart';
+import '../model/category.dart';
 
 abstract class CategoryDataService {
   Future<void> getCategoriesData();

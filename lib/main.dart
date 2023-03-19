@@ -16,7 +16,7 @@ import 'modules/favourites/controllers/favourites_controller.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  initGetIt();
+  initServiceLocator();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await FavouritesController.getFavIdListFromCache();

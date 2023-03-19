@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../components/core/product_card.dart';
-import '../../data/entities/products.dart';
+import '../../data/model/product.dart';
 
 class SeeAllPage extends StatelessWidget {
   const SeeAllPage(

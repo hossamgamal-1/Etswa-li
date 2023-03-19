@@ -1,26 +1,36 @@
+import 'package:e_commerce/data/database/product_details_service.dart';
+import 'package:e_commerce/data/use_cases/get_product_details.dart';
+import 'package:e_commerce/data/use_cases/get_products_list.dart';
 import 'package:get_it/get_it.dart';
 
 import '../data/database/remote_database.dart';
 import '../data/database/products_data_services.dart';
 import '../data/database/category_data_services.dart';
+import '../data/use_cases/get_categories_list.dart';
 import '../modules/authentication/auth.dart';
 import '../modules/authentication/email_password_auth.dart';
 import '../modules/authentication/phone_auth.dart';
 
-final getIt = GetIt.instance;
+final sL = GetIt.instance;
 
-void initGetIt() {
-  getIt.registerLazySingleton<RemoteDatabase>(
-    () => RemoteDatabase(getIt(), getIt()),
-  );
-  getIt.registerLazySingleton<ProductsDataService>(
-    () => ProductsDataGetter(),
-  );
-  getIt.registerLazySingleton<CategoryDataService>(
-    () => CategoryDataGetter(),
-  );
-  getIt.registerLazySingleton<Auth>(() => Auth(getIt(), getIt()));
-  getIt.registerLazySingleton<EmailAndPasswordAuthService>(
+void initServiceLocator() {
+  //Data injection
+  sL.registerLazySingleton<RemoteDatabase>(
+      () => RemoteDatabase(sL(), sL(), sL()));
+  sL.registerLazySingleton<ProductsDataService>(() => ProductsDataGetter());
+  sL.registerLazySingleton<CategoryDataService>(() => CategoryDataGetter());
+  sL.registerLazySingleton<ProductDetailsService>(() => ProductDetailsGetter());
+
+  //Use Cases injection
+  sL.registerLazySingleton<ProductsDataGetterBaseUseCase>(
+      () => ProductsDataGetterUseCase(sL()));
+  sL.registerLazySingleton<CategoriesDataGetterBaseUseCase>(
+      () => CategoriesDataGetterUseCase(sL()));
+  sL.registerLazySingleton<ProductDetailsGetterBaseUseCase>(
+      () => ProductDetailsGetterUseCase(sL()));
+
+  sL.registerLazySingleton<Auth>(() => Auth(sL(), sL()));
+  sL.registerLazySingleton<EmailAndPasswordAuthService>(
       () => EmailAndPasswordAuthHandler());
-  getIt.registerLazySingleton<PhoneAuthService>(() => PhoneAuthHandler());
+  sL.registerLazySingleton<PhoneAuthService>(() => PhoneAuthHandler());
 }

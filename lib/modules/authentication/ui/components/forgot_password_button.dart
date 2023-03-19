@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/resources/color_manager.dart';
+import '../../../../ui/resources/color_manager.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
   const ForgotPasswordButton({

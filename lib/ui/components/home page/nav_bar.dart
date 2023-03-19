@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/color_manager.dart';
+import '../../resources/color_manager.dart';
 import '../../controllers/home_page_controller.dart';
 import 'home_page_strings.dart';
 
@@ -24,8 +24,8 @@ class NavBar extends StatelessWidget {
         tabBorderRadius: 15,
         iconSize: 24,
         tabBackgroundGradient: LinearGradient(colors: [
-          for (int i = 0; i <= 3; i++) ColorManager.cursorColor,
-          ColorManager.cursorColor.withOpacity(0.1),
+          for (int i = 0; i <= 3; i++) ColorManager.primaryColor,
+          ColorManager.primaryColor.withOpacity(0.1),
         ]),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         onTabChange: read.bottomNavigatorIndexSetter,

@@ -1,4 +1,3 @@
-import '../../core/resources/app_text_styles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +5,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/injection.dart';
-import '../../core/resources/color_manager.dart';
+import '../resources/color_manager.dart';
+import '../resources/fonts_manager.dart';
 import '../../modules/authentication/auth.dart';
 import '../../modules/authentication/ui/main_auth_page.dart';
 import '../controllers/home_page_controller.dart';
@@ -73,17 +73,16 @@ class Profile extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                FirebaseAuth.instance.currentUser!.email
-                                        ?.split('@')[0] ??
-                                    'unkown',
-                                style: AppTextStyles.productTitle
-                                    .copyWith(color: ColorManager.white),
-                              ),
+                                  FirebaseAuth.instance.currentUser!.email
+                                          ?.split('@')[0] ??
+                                      'unkown',
+                                  style: getRegularTextStyle(
+                                      color: ColorManager.white)),
                               Text(
                                 FirebaseAuth.instance.currentUser!.email ??
                                     'unkown@mail.com',
-                                style: AppTextStyles.productTitle
-                                    .copyWith(color: ColorManager.white),
+                                style: getRegularTextStyle(
+                                    color: ColorManager.white),
                               ),
                             ]),
                       ],
@@ -99,7 +98,7 @@ class Profile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: const [
                       BoxShadow(
-                          color: ColorManager.cursorColor,
+                          color: ColorManager.primaryColor,
                           offset: Offset(0, 2),
                           blurRadius: 10)
                     ]),
@@ -119,13 +118,13 @@ class Profile extends StatelessWidget {
                       child: Text(
                         'Log Out',
                         style: TextStyle(
-                            color: ColorManager.cursorColor,
+                            color: ColorManager.primaryColor,
                             fontSize: 5.8.sp,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w600),
                       ),
                       onPressed: () {
-                        Auth(getIt(), getIt()).signOutEmailAndPassword();
+                        Auth(sL(), sL()).signOutEmailAndPassword();
                         Navigator.pushReplacement(
                           context,
                           PageTransition(
@@ -152,7 +151,7 @@ class Profile extends StatelessWidget {
       ListTile(
         leading: Icon(iconData),
         title: Text(title),
-        iconColor: ColorManager.cursorColor,
+        iconColor: ColorManager.primaryColor,
       ),
       Container(
         margin: EdgeInsets.symmetric(horizontal: 8.w),
@@ -175,7 +174,7 @@ class DecorationCircles extends StatelessWidget {
       height: 380,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: ColorManager.cursorColor,
+        color: ColorManager.primaryColor,
       ),
     );
   }

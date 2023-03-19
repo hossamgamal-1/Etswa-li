@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/color_manager.dart';
-import '../../../data/entities/products.dart';
+import '../../resources/color_manager.dart';
+import '../../../data/model/product.dart';
 import '../../../modules/favourites/controllers/favourites_controller.dart';
 
 class FavouriteButton extends StatelessWidget {
@@ -23,7 +23,7 @@ class FavouriteButton extends StatelessWidget {
         builder: (context, value, _) {
           return Center(
             child: IconButton(
-              splashColor: ColorManager.transperantColor,
+              splashColor: ColorManager.transparent,
               onPressed: () => value.updateFavouriteItemIdsList(product),
               icon: product.isFavourite
                   ? Icon(

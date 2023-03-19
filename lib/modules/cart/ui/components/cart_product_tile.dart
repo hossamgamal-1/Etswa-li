@@ -1,3 +1,4 @@
+import '../../../../ui/resources/fonts_manager.dart';
 import '../../controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -6,9 +7,8 @@ import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/resources/app_text_styles.dart';
-import '../../../../core/resources/color_manager.dart';
-import '../../../../data/entities/products.dart';
+import '../../../../ui/resources/color_manager.dart';
+import '../../../../data/model/product.dart';
 import '../../../../ui/components/core/price_tile.dart';
 import '../../../../ui/screens/product_page.dart';
 import 'cart_quantity.dart';
@@ -45,7 +45,7 @@ class CartProductTile extends StatelessWidget {
       onLongPress: () =>
           showDialog(context: context, builder: (context) => alertDialog),
       child: ImagePixels(
-        imageProvider: CachedNetworkImageProvider(product.imageUrls[0]),
+        imageProvider: CachedNetworkImageProvider(product.imageUrl),
         builder: (context, img) {
           Color backgroundColor = img.pixelColorAt!(0, 0);
           Color foregroundColor = ((backgroundColor.computeLuminance() > 0.5))
@@ -55,7 +55,7 @@ class CartProductTile extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               PageTransition(
-                child: ProductPage(product),
+                child: ProductPage(product.id),
                 type: PageTransitionType.fade,
               ),
             ),
@@ -81,8 +81,7 @@ class CartProductTile extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                          image:
-                              CachedNetworkImageProvider(product.imageUrls[0]),
+                          image: CachedNetworkImageProvider(product.imageUrl),
                           fit: BoxFit.cover),
                     ),
                   ),
@@ -92,8 +91,8 @@ class CartProductTile extends StatelessWidget {
                     children: [
                       Text(
                         product.title,
-                        style: AppTextStyles.categoryChipTextStyle
-                            .copyWith(color: foregroundColor),
+                        style: getRegularTextStyle(
+                            color: foregroundColor, fontSize: FontSize.s4.sp),
                       ),
                       PriceTile(product),
                     ],

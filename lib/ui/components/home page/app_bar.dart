@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/resources/color_manager.dart';
+import '../../resources/color_manager.dart';
 import '../../../modules/search/controllers/search_controller.dart';
 import '../../../modules/search/ui/search.dart';
 import 'home_page_strings.dart';
@@ -17,7 +17,7 @@ class HomePageAppBar extends StatelessWidget {
         height: kToolbarHeight - 10,
         child: TextField(
           textAlignVertical: TextAlignVertical.bottom,
-          cursorColor: ColorManager.cursorColor,
+          cursorColor: ColorManager.primaryColor,
           decoration: InputDecoration(
             hintText: HomePageStrings.appBarSearchHintText,
             border: outLinedBorder(),

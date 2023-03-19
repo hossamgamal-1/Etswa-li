@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/resources/color_manager.dart';
+import '../../../../ui/resources/color_manager.dart';
 import '../../controller/email_password_auth_controller.dart';
 import 'auth_strings.dart';
 
@@ -49,7 +49,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               const TextStyle(color: ColorManager.textFieldForegroundColor),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: ColorManager.transperantColor),
+            borderSide: const BorderSide(color: ColorManager.transparent),
           ),
         ),
         keyboardType: TextInputType.visiblePassword,

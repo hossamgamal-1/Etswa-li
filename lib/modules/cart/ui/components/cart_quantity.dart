@@ -4,8 +4,8 @@ import 'package:holding_gesture/holding_gesture.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/resources/app_text_styles.dart';
-import '../../../../data/entities/products.dart';
+import '../../../../ui/resources/fonts_manager.dart';
+import '../../../../data/model/product.dart';
 import '../../controllers/cart_controller.dart';
 
 class CartQuantity extends StatelessWidget {
@@ -28,8 +28,7 @@ class CartQuantity extends StatelessWidget {
         Consumer<CartController>(
           builder: (BuildContext context, value, Widget? child) => Text(
             NumberFormat('00').format(product.quantity),
-            style: AppTextStyles.categoryChipTextStyle
-                .copyWith(color: foregroundColor),
+            style: getRegularTextStyle(color: foregroundColor),
           ),
         ),
         addRemoveIconTile(

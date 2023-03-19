@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../core/resources/app_text_styles.dart';
-import '../../../core/resources/color_manager.dart';
-import '../../../data/entities/products.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/fonts_manager.dart';
+import '../../../data/model/product.dart';
 import '../../screens/product_page.dart';
 import 'favourite_button.dart';
 import 'offer_percentage_circle.dart';
@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   PageTransition(
-                    child: ProductPage(products[index]),
+                    child: ProductPage(products[index].id),
                     duration: const Duration(milliseconds: 300),
                     type: PageTransitionType.fade,
                   ),
@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
                 child: ImagePixels(
                   defaultColor: ColorManager.white,
                   imageProvider:
-                      CachedNetworkImageProvider(products[index].imageUrls[0]),
+                      CachedNetworkImageProvider(products[index].imageUrl),
                   builder: (context, image) {
                     Color backgroundColor =
                         image.pixelColorAt!(0, 0).withOpacity(0.9);
@@ -54,7 +54,7 @@ class ProductCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 image: CachedNetworkImageProvider(
-                                  products[index].imageUrls[0],
+                                  products[index].imageUrl,
                                 ),
                               ),
                             ),
@@ -66,7 +66,7 @@ class ProductCard extends StatelessWidget {
                           Center(
                             child: Text(
                               products[index].title,
-                              style: AppTextStyles.productTitle.copyWith(
+                              style: getRegularTextStyle(
                                 color:
                                     ((backgroundColor.computeLuminance() > 0.5))
                                         ? ColorManager.white

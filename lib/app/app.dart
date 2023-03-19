@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import '../core/resources/app_light_theme.dart';
+import '../ui/resources/app_light_theme.dart';
 import '../modules/authentication/controller/email_password_auth_controller.dart';
 import '../modules/authentication/controller/phone_auth_controller.dart';
 import '../modules/authentication/ui/main_auth_page.dart';

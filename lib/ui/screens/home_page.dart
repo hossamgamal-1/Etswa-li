@@ -1,14 +1,14 @@
+import 'package:e_commerce/data/use_cases/use_cases.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/database/products_data_services.dart';
+import '../../core/injection.dart';
 import '../../modules/favourites/ui/favourites.dart';
 import '../../modules/cart/ui/cart.dart';
 import '../../ui/controllers/home_page_controller.dart';
+import '../components/core/snapshot_error_waiting.dart';
 import '../components/home page/drawer.dart';
-import '../components/home page/home_page_strings.dart';
-import '../components/home page/product_tile.dart';
 import '../components/home page/app_bar.dart';
 import '../components/home page/categories_chip.dart';
 import '../components/home page/categories_tiles.dart';
@@ -30,9 +30,8 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: HomePageAppBar(),
-      ),
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: HomePageAppBar()),
       body: pages[watch.bottomNavigatorIndex],
       drawer: const HomePageDrawer(),
       bottomNavigationBar: const NavBar(),
@@ -45,18 +44,26 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UseCases useCases = UseCases(sL(), sL(), sL());
     return ListView(
       children: [
-        SizedBox(height: 12.h, child: const CategoryChip()),
         SizedBox(
-          height: 46.h,
-          child: ProductTile(
-            products: HomePageStrings.productTileProducts,
-            seeAll: HomePageStrings.productTileSeeAll,
-            productsData: ProductsDataGetter.products,
+          height: 12.h,
+          child: FutureBuilder(
+            future: useCases.getCategoriesData(),
+            builder: (context, snapShots) => SnapShotErrorWaitingHandler(
+              snapShots: snapShots,
+              child: const CategoriesChip(),
+            ),
           ),
         ),
-        const CategoriesTiles()
+        FutureBuilder(
+          future: useCases.getProductsData(),
+          builder: (context, snapshots) => SnapShotErrorWaitingHandler(
+            snapShots: snapshots,
+            child: const CategoriesTiles(),
+          ),
+        ),
       ],
     );
   }
