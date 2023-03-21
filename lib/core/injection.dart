@@ -15,7 +15,7 @@ final sL = GetIt.instance;
 
 void initServiceLocator() {
   //Data injection
-  sL.registerLazySingleton<RemoteDatabase>(
+  sL.registerLazySingleton<BaseRemoteDatabase>(
       () => RemoteDatabase(sL(), sL(), sL()));
   sL.registerLazySingleton<ProductsDataService>(() => ProductsDataGetter());
   sL.registerLazySingleton<CategoryDataService>(() => CategoryDataGetter());
@@ -29,6 +29,7 @@ void initServiceLocator() {
   sL.registerLazySingleton<ProductDetailsGetterBaseUseCase>(
       () => ProductDetailsGetterUseCase(sL()));
 
+  //Modules injection
   sL.registerLazySingleton<Auth>(() => Auth(sL(), sL()));
   sL.registerLazySingleton<EmailAndPasswordAuthService>(
       () => EmailAndPasswordAuthHandler());

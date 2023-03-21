@@ -5,12 +5,12 @@ abstract class CategoriesDataGetterBaseUseCase {
 }
 
 class CategoriesDataGetterUseCase implements CategoriesDataGetterBaseUseCase {
-  final RemoteDatabase remoteDatabase;
+  final BaseRemoteDatabase baseRemoteDatabase;
 
-  CategoriesDataGetterUseCase(this.remoteDatabase);
+  CategoriesDataGetterUseCase(this.baseRemoteDatabase);
 
   @override
   Future<void> getCategoriesData() {
-    return remoteDatabase.getCategoriesData();
+    return baseRemoteDatabase.getCategoriesData();
   }
 }

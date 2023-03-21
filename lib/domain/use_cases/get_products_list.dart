@@ -5,12 +5,12 @@ abstract class ProductsDataGetterBaseUseCase {
 }
 
 class ProductsDataGetterUseCase implements ProductsDataGetterBaseUseCase {
-  final RemoteDatabase remoteDatabase;
+  final BaseRemoteDatabase baseRemoteDatabase;
 
-  ProductsDataGetterUseCase(this.remoteDatabase);
+  ProductsDataGetterUseCase(this.baseRemoteDatabase);
 
   @override
   Future<void> getProductsData() {
-    return remoteDatabase.getProductsData();
+    return baseRemoteDatabase.getProductsData();
   }
 }
