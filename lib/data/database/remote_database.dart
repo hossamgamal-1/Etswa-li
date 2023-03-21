@@ -1,10 +1,16 @@
 import 'package:e_commerce/data/database/product_details_service.dart';
-import 'package:e_commerce/data/model/product_details.dart';
 
+import '../model/product_model.dart';
 import 'products_data_services.dart';
 import 'category_data_services.dart';
 
-class RemoteDatabase {
+abstract class BaseRemoteDatabase {
+  Future<void> getProductsData();
+  Future<void> getCategoriesData();
+  Future<ProductModel> getProductDetails(int productId);
+}
+
+class RemoteDatabase implements BaseRemoteDatabase {
   final ProductsDataService _productsDataService;
   final CategoryDataService _categoryDataService;
   final ProductDetailsService _productDetailsService;
@@ -12,8 +18,11 @@ class RemoteDatabase {
   RemoteDatabase(this._productsDataService, this._categoryDataService,
       this._productDetailsService);
 
+  @override
   Future<void> getProductsData() => _productsDataService.getProductsData();
+  @override
   Future<void> getCategoriesData() => _categoryDataService.getCategoriesData();
-  Future<ProductDetails> getProductDetails(int productId) =>
+  @override
+  Future<ProductModel> getProductDetails(int productId) =>
       _productDetailsService.getProductDetails(productId);
 }

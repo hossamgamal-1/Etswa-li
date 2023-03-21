@@ -1,17 +1,16 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_constants.dart';
-import '../model/product.dart';
+import '../model/product_model.dart';
 
 abstract class ProductsDataService {
   Future<void> getProductsData();
 }
 
 class ProductsDataGetter implements ProductsDataService {
-  static List<Product> products = [];
+  static List<ProductModel> products = [];
   static List<int> productsIds = [];
   int times = 0;
   @override
@@ -24,19 +23,15 @@ class ProductsDataGetter implements ProductsDataService {
         List dataList = json.decode(response.body);
         productsIds = products.map((product) => product.id).toList();
         for (int i = 0; i < dataList.length; i++) {
-          Product receivedProduct = Product.fromJson(dataList[i]);
+          ProductModel receivedProduct = ProductModel.fromJson(dataList[i]);
           if (!productsIds.contains(receivedProduct.id)) {
             products.add(receivedProduct);
           }
         }
         // times++;
-        if (kDebugMode) {
-          print(products.length);
-        }
       } catch (error) {
-        debugPrint(error.toString());
+        print(error.toString());
       }
     }
-    times++;
   }
 }

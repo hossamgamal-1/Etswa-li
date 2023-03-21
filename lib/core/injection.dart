@@ -1,12 +1,12 @@
 import 'package:e_commerce/data/database/product_details_service.dart';
-import 'package:e_commerce/data/use_cases/get_product_details.dart';
-import 'package:e_commerce/data/use_cases/get_products_list.dart';
+import 'package:e_commerce/domain/use_cases/get_product_details.dart';
+import 'package:e_commerce/domain/use_cases/get_products_list.dart';
 import 'package:get_it/get_it.dart';
 
 import '../data/database/remote_database.dart';
 import '../data/database/products_data_services.dart';
 import '../data/database/category_data_services.dart';
-import '../data/use_cases/get_categories_list.dart';
+import '../domain/use_cases/get_categories_list.dart';
 import '../modules/authentication/auth.dart';
 import '../modules/authentication/email_password_auth.dart';
 import '../modules/authentication/phone_auth.dart';

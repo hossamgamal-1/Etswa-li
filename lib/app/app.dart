@@ -4,16 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import '../ui/resources/app_light_theme.dart';
-import '../modules/authentication/controller/email_password_auth_controller.dart';
-import '../modules/authentication/controller/phone_auth_controller.dart';
-import '../modules/authentication/ui/main_auth_page.dart';
-import '../modules/cart/controllers/cart_controller.dart';
-import '../modules/favourites/controllers/favourites_controller.dart';
-import '../modules/search/controllers/search_controller.dart';
-import '../ui/controllers/home_page_controller.dart';
-import '../ui/controllers/product_page_controller.dart';
-import '../ui/screens/home_page.dart';
+import '../presentation/resources/app_light_theme.dart';
+import '../modules/authentication/business_logic/email_password_auth_controller.dart';
+import '../modules/authentication/business_logic/phone_auth_controller.dart';
+import '../modules/authentication/presentation/main_auth_page.dart';
+import '../modules/cart/business_logic/cart_controller.dart';
+import '../modules/favourites/business_logic/favourites_controller.dart';
+import '../modules/search/business_logic/search_controller.dart';
+import '../presentation/business_logic/home_page_controller.dart';
+import '../presentation/business_logic/product_page_controller.dart';
+import '../presentation/screens/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp._internal();
@@ -53,9 +53,7 @@ class AppProviders {
     ChangeNotifierProvider(create: (context) => FavouritesController()),
     ChangeNotifierProvider(create: (context) => SearchController()),
     ChangeNotifierProvider(create: (context) => ProductPageController()),
-    ChangeNotifierProvider(
-      create: (context) => EmailPasswordAuthController(),
-    ),
+    ChangeNotifierProvider(create: (context) => EmailPasswordAuthController()),
     ChangeNotifierProvider(create: (context) => PhoneAuthController()),
     ChangeNotifierProvider(create: (context) => CartController()),
   ];

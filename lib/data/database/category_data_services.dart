@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/app_constants.dart';
-import '../model/category.dart';
+import '../model/category_model.dart';
 
 abstract class CategoryDataService {
   Future<void> getCategoriesData();
 }
 
 class CategoryDataGetter implements CategoryDataService {
-  static List<Category> categories = [];
+  static List<CategoryModel> categories = [];
 
   @override
   Future<void> getCategoriesData() async {
@@ -24,7 +24,7 @@ class CategoryDataGetter implements CategoryDataService {
       for (var data in dataList) {
         try {
           categories.length < dataList.length
-              ? categories.add(Category.fromJson(data))
+              ? categories.add(CategoryModel.fromJson(data))
               : null;
         } catch (error) {
           debugPrint(error.toString());
