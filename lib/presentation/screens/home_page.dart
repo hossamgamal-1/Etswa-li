@@ -4,15 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/injection.dart';
-import '../../modules/favourites/presentation/favourites.dart';
 import '../../modules/cart/presentation/cart.dart';
+import '../../modules/favourites/presentation/favourites.dart';
+import '../business_logic/home_page_controller.dart';
 import '../components/core/snapshot_error_waiting.dart';
-import '../components/home page/drawer.dart';
 import '../components/home page/app_bar.dart';
 import '../components/home page/categories_chip.dart';
 import '../components/home page/categories_tiles.dart';
+import '../components/home page/drawer.dart';
 import '../components/home page/nav_bar.dart';
-import '../business_logic/home_page_controller.dart';
 import 'profile.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,12 +20,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List pages = [
-      const HomeContent(),
-      const Favourites(),
-      const CartPage(),
-      const Profile()
-    ];
+    const List pages = [HomeContent(), Favourites(), CartPage(), Profile()];
     HomePageController watch = context.watch<HomePageController>();
 
     return Scaffold(
